@@ -1,0 +1,809 @@
+﻿{
+    "documents":  [
+                      {
+                          "uploader_name":  "Dr. Rajesh Kumar",
+                          "document_type_id":  1,
+                          "application_id":  1,
+                          "original_filename":  "Notarized_Affidavit_DIT_2026.pdf",
+                          "file_size":  642,
+                          "uploaded_by":  3,
+                          "status":  "VERIFIED",
+                          "institution_id":  1,
+                          "id":  1,
+                          "stored_filename":  "demo_affidavit.pdf",
+                          "is_active":  true,
+                          "upload_date":  "2026-10-14T10:00:00Z",
+                          "expiry_date":  "2027-01-10",
+                          "sha256_hash":  "a8f5c2d9e1b304958273645192837465a8f5c2d9e1b304958273645192837465",
+                          "document_type_name":  "Affidavit",
+                          "file_path":  "C:\\Users\\JayaPrakash\\Desktop\\AI-BMEZ\\backend\\uploads\\demo_affidavit.pdf",
+                          "mime_type":  "application/pdf"
+                      },
+                      {
+                          "uploader_name":  "Dr. Rajesh Kumar",
+                          "document_type_id":  4,
+                          "application_id":  1,
+                          "original_filename":  "State_Govt_NOC_Karnataka_2026.pdf",
+                          "file_size":  618,
+                          "uploaded_by":  3,
+                          "status":  "VERIFIED",
+                          "institution_id":  1,
+                          "id":  2,
+                          "stored_filename":  "demo_noc_certificate.pdf",
+                          "is_active":  true,
+                          "upload_date":  "2026-10-14T11:00:00Z",
+                          "expiry_date":  "2026-11-25",
+                          "sha256_hash":  "b7e4d1c8f2a405968374655293847566b7e4d1c8f2a405968374655293847566",
+                          "document_type_name":  "No Objection Certificate (NOC)",
+                          "file_path":  "C:\\Users\\JayaPrakash\\Desktop\\AI-BMEZ\\backend\\uploads\\demo_noc_certificate.pdf",
+                          "mime_type":  "application/pdf"
+                      },
+                      {
+                          "uploader_name":  "Dr. Rajesh Kumar",
+                          "document_type_id":  9,
+                          "application_id":  2,
+                          "original_filename":  "Infrastructure_Adequacy_Cert_DIT.pdf",
+                          "file_size":  630,
+                          "uploaded_by":  3,
+                          "status":  "PROCESSING",
+                          "institution_id":  1,
+                          "id":  3,
+                          "stored_filename":  "demo_infra_certificate.pdf",
+                          "is_active":  true,
+                          "upload_date":  "2026-10-21T09:30:00Z",
+                          "expiry_date":  "2026-12-20",
+                          "sha256_hash":  "c9d3e2b7a1f506978475665394857667c9d3e2b7a1f506978475665394857667",
+                          "document_type_name":  "Infrastructure Certificate",
+                          "file_path":  "C:\\Users\\JayaPrakash\\Desktop\\AI-BMEZ\\backend\\uploads\\demo_infra_certificate.pdf",
+                          "mime_type":  "application/pdf"
+                      },
+                      {
+                          "uploader_name":  "Dr. Rajesh Kumar",
+                          "document_type_id":  1,
+                          "application_id":  1,
+                          "original_filename":  "Duplicate_Copy_Affidavit_DIT.pdf",
+                          "file_size":  642,
+                          "uploaded_by":  3,
+                          "status":  "PENDING",
+                          "institution_id":  1,
+                          "id":  4,
+                          "stored_filename":  "demo_duplicate_affidavit.pdf",
+                          "is_active":  true,
+                          "upload_date":  "2026-10-24T15:00:00Z",
+                          "expiry_date":  "2026-10-15",
+                          "sha256_hash":  "a8f5c2d9e1b304958273645192837465a8f5c2d9e1b304958273645192837465",
+                          "document_type_name":  "Affidavit",
+                          "file_path":  "C:\\Users\\JayaPrakash\\Desktop\\AI-BMEZ\\backend\\uploads\\demo_duplicate_affidavit.pdf",
+                          "mime_type":  "application/pdf"
+                      }
+                  ],
+    "users":  [
+                  {
+                      "last_login":  "2026-11-01T10:00:00Z",
+                      "id":  1,
+                      "role":  "SUPER_ADMIN",
+                      "password":  "Admin@123456",
+                      "created_at":  "2026-10-01T09:00:00Z",
+                      "full_name":  "AICTE System Administrator",
+                      "institution_id":  null,
+                      "is_active":  true,
+                      "email":  "admin@aicte.gov.in"
+                  },
+                  {
+                      "last_login":  "2026-11-01T10:15:00Z",
+                      "id":  2,
+                      "role":  "OFFICER",
+                      "password":  "Officer@123456",
+                      "created_at":  "2026-10-01T09:00:00Z",
+                      "full_name":  "Dr. Anand Verification Officer",
+                      "institution_id":  null,
+                      "is_active":  true,
+                      "email":  "officer@aicte.gov.in"
+                  },
+                  {
+                      "last_login":  "2026-11-01T10:30:00Z",
+                      "id":  3,
+                      "role":  "INSTITUTION_ADMIN",
+                      "password":  "Institute@123456",
+                      "created_at":  "2026-10-05T09:00:00Z",
+                      "full_name":  "Dr. Rajesh Kumar (DIT Admin)",
+                      "institution_id":  1,
+                      "is_active":  true,
+                      "email":  "institute@demo.edu.in"
+                  }
+              ],
+    "verifications":  [
+                          {
+                              "source":  "DEMO_ADAPTER_STATE_NOC_PORTAL",
+                              "requested_at":  "2026-10-25T12:00:00Z",
+                              "id":  1,
+                              "responded_at":  "2026-10-25T12:00:02Z",
+                              "document_id":  2,
+                              "notes":  "[DEMO MODE] Synthetic verification result for STATE_NOC_PORTAL. Not a real government database query.",
+                              "verification_type":  "STATE_NOC_PORTAL",
+                              "external_ref":  "DEMO-20261025-0002",
+                              "status":  "VERIFIED"
+                          }
+                      ],
+    "reports":  [
+                    {
+                        "id":  1,
+                        "application_id":  1,
+                        "report_type":  "APPLICATION_VALIDATION",
+                        "generated_by":  1,
+                        "generator_name":  "AICTE System Administrator",
+                        "file_path":  "c:\\Users\\JayaPrakash\\Desktop\\AI-BMEZ\\backend\\reports\\Validation_Report_App_1_1.pdf",
+                        "created_at":  "2026-11-01T07:43:39Z",
+                        "download_url":  "/reports-files/Validation_Report_App_1_1.pdf"
+                    }
+                ],
+    "institutions":  [
+                         {
+                             "name":  "Demonstration Institute of Technology",
+                             "created_at":  "2026-09-01T10:00:00Z",
+                             "address":  "123 Tech Park, Electronic City",
+                             "institution_type":  "Engineering College",
+                             "application_count":  2,
+                             "status":  "ACTIVE",
+                             "contact_person":  "Dr. Rajesh Kumar",
+                             "pincode":  "560100",
+                             "id":  1,
+                             "email":  "admin@demo-dit.edu.in",
+                             "state":  "Karnataka",
+                             "document_count":  4,
+                             "establishment_year":  2005,
+                             "aicte_id":  "AICTE-DIT-2024-001",
+                             "phone":  "9876543210",
+                             "district":  "Bengaluru Urban",
+                             "city":  "Bengaluru"
+                         },
+                         {
+                             "name":  "Sample Polytechnic Institute",
+                             "created_at":  "2026-09-10T10:00:00Z",
+                             "address":  "456 Education Road, Sector 15",
+                             "institution_type":  "Polytechnic",
+                             "application_count":  1,
+                             "status":  "PENDING",
+                             "contact_person":  "Prof. Meera Sharma",
+                             "pincode":  "411001",
+                             "id":  2,
+                             "email":  "admin@sample-poly.edu.in",
+                             "state":  "Maharashtra",
+                             "document_count":  1,
+                             "establishment_year":  2010,
+                             "aicte_id":  "AICTE-SPI-2024-002",
+                             "phone":  "9123456789",
+                             "district":  "Pune",
+                             "city":  "Pune"
+                         },
+                         {
+                             "name":  "Model Engineering College",
+                             "created_at":  "2026-09-15T10:00:00Z",
+                             "address":  "789 College Avenue, Anna Nagar",
+                             "institution_type":  "Engineering College",
+                             "application_count":  2,
+                             "status":  "ACTIVE",
+                             "contact_person":  "Dr. Priya Venkat",
+                             "pincode":  "600040",
+                             "id":  3,
+                             "email":  "admin@model-ec.edu.in",
+                             "state":  "Tamil Nadu",
+                             "document_count":  1,
+                             "establishment_year":  1998,
+                             "aicte_id":  "AICTE-MEC-2024-003",
+                             "phone":  "9988776655",
+                             "district":  "Chennai",
+                             "city":  "Chennai"
+                         }
+                     ],
+    "ocr_results":  [
+                        {
+                            "processed_at":  "2026-10-14T10:05:00Z",
+                            "ocr_engine":  "pymupdf+tesseract",
+                            "id":  1,
+                            "issuing_authority":  "Notary Public, Bengaluru Urban",
+                            "issue_date":  "10/01/2026",
+                            "document_id":  1,
+                            "institution_name":  "Demonstration Institute of Technology",
+                            "confidence_score":  0.94,
+                            "extracted_text":  "ALL INDIA COUNCIL FOR TECHNICAL EDUCATION - SAMPLE DEMO AFFIDAVIT\nName of Institution: Demonstration Institute of Technology\nCertificate Number: AFF-KA-2026-0091\nDate of Issue: 10/01/2026\nValid Till: 10/01/2027\nIssued By: Notary Public, Bengaluru Urban",
+                            "corrections":  [
+
+                                            ],
+                            "cert_number":  "AFF-KA-2026-0091",
+                            "expiry_date":  "10/01/2027"
+                        },
+                        {
+                            "processed_at":  "2026-10-14T11:05:00Z",
+                            "ocr_engine":  "pymupdf+tesseract",
+                            "id":  2,
+                            "issuing_authority":  "Department of Higher Education, Karnataka",
+                            "issue_date":  "15/02/2026",
+                            "document_id":  2,
+                            "institution_name":  "Demonstration Institute of Technology",
+                            "confidence_score":  0.91,
+                            "extracted_text":  "STATE GOVERNMENT NO OBJECTION CERTIFICATE (DEMO)\nName of Institution: Demonstration Institute of Technology\nCertificate Number: NOC-GOV-KA-2026-4412\nDate of Issue: 15/02/2026\nValid Till: 25/11/2026\nIssued By: Department of Higher Education, Karnataka",
+                            "corrections":  [
+
+                                            ],
+                            "cert_number":  "NOC-GOV-KA-2026-4412",
+                            "expiry_date":  "25/11/2026"
+                        }
+                    ],
+    "applications":  [
+                         {
+                             "reviewer_name":  "Dr. Anand Verification Officer",
+                             "category_code":  "NIA",
+                             "category_name":  "New Institution Approval",
+                             "created_at":  "2026-10-12T10:00:00Z",
+                             "application_id":  "AICTE-2026-NIA-00001",
+                             "review_notes":  "OCR and SHA-256 verification completed. Please upload missing Land Certificate.",
+                             "submitted_at":  "2026-10-15T14:20:00Z",
+                             "status":  "UNDER_REVIEW",
+                             "submitted_by":  3,
+                             "id":  1,
+                             "institution_name":  "Demonstration Institute of Technology",
+                             "institution_id":  1,
+                             "document_count":  3,
+                             "reviewer_id":  2,
+                             "category_id":  1,
+                             "title":  "New Institution Approval - Demonstration Institute of Technology",
+                             "submitter_name":  "Dr. Rajesh Kumar"
+                         },
+                         {
+                             "reviewer_name":  null,
+                             "category_code":  "EOA",
+                             "category_name":  "Extension of Approval (EOA)",
+                             "created_at":  "2026-10-20T10:00:00Z",
+                             "application_id":  "AICTE-2026-EOA-00002",
+                             "review_notes":  null,
+                             "submitted_at":  "2026-10-25T11:00:00Z",
+                             "status":  "SUBMITTED",
+                             "submitted_by":  3,
+                             "id":  2,
+                             "institution_name":  "Demonstration Institute of Technology",
+                             "institution_id":  1,
+                             "document_count":  1,
+                             "reviewer_id":  null,
+                             "category_id":  2,
+                             "title":  "Extension of Approval 2026-27 - Demonstration Institute of Technology",
+                             "submitter_name":  "Dr. Rajesh Kumar"
+                         },
+                         {
+                             "reviewer_name":  null,
+                             "category_code":  "CA",
+                             "category_name":  "Course Addition",
+                             "created_at":  "2026-10-27T09:30:00Z",
+                             "application_id":  "AICTE-2026-CA-00003",
+                             "review_notes":  null,
+                             "submitted_at":  null,
+                             "status":  "DRAFT",
+                             "submitted_by":  1,
+                             "id":  3,
+                             "institution_name":  "Sample Polytechnic Institute",
+                             "institution_id":  2,
+                             "document_count":  0,
+                             "reviewer_id":  null,
+                             "category_id":  3,
+                             "title":  "Course Addition - Diploma in AI \u0026 Robotics - Sample Polytechnic Institute",
+                             "submitter_name":  "AICTE System Administrator"
+                         },
+                         {
+                             "reviewer_name":  "Dr. Anand Verification Officer",
+                             "category_code":  "IM",
+                             "category_name":  "Intake Modification",
+                             "created_at":  "2026-09-18T10:00:00Z",
+                             "application_id":  "AICTE-2026-IM-00004",
+                             "review_notes":  "All compliance rules satisfied.",
+                             "submitted_at":  "2026-09-20T16:00:00Z",
+                             "status":  "APPROVED",
+                             "submitted_by":  1,
+                             "id":  4,
+                             "institution_name":  "Model Engineering College",
+                             "institution_id":  3,
+                             "document_count":  2,
+                             "reviewer_id":  2,
+                             "category_id":  4,
+                             "title":  "Intake Modification - Increase CSE Intake (120 to 180) - Model Engineering College",
+                             "submitter_name":  "AICTE System Administrator"
+                         },
+                         {
+                             "reviewer_name":  "Dr. Anand Verification Officer",
+                             "category_code":  "EOA",
+                             "category_name":  "Extension of Approval (EOA)",
+                             "created_at":  "2026-10-05T10:00:00Z",
+                             "application_id":  "AICTE-2026-EOA-00005",
+                             "review_notes":  "Returned: Please resubmit updated faculty strength register and renewed NOC.",
+                             "submitted_at":  "2026-10-08T12:00:00Z",
+                             "status":  "RETURNED",
+                             "submitted_by":  1,
+                             "id":  5,
+                             "institution_name":  "Model Engineering College",
+                             "institution_id":  3,
+                             "document_count":  1,
+                             "reviewer_id":  2,
+                             "category_id":  2,
+                             "title":  "Extension of Approval 2026-27 - Model Engineering College",
+                             "submitter_name":  "AICTE System Administrator"
+                         }
+                     ],
+    "compliance_results":  [
+                               {
+                                   "rule_name":  "Mandatory Affidavit Required",
+                                   "id":  1,
+                                   "application_id":  1,
+                                   "evidence":  "Document #1 (Notarized_Affidavit_DIT_2026.pdf) verified",
+                                   "severity":  "CRITICAL",
+                                   "description":  "[SAMPLE RULE] Every application must include a notarized affidavit.",
+                                   "rule_id":  "RULE-001",
+                                   "checked_at":  "2026-10-25T10:00:00Z",
+                                   "status":  "COMPLIANT",
+                                   "is_sample":  true
+                               },
+                               {
+                                   "rule_name":  "Valid State Government NOC",
+                                   "id":  2,
+                                   "application_id":  1,
+                                   "evidence":  "Document #2 (State_Govt_NOC_Karnataka_2026.pdf) verified",
+                                   "severity":  "CRITICAL",
+                                   "description":  "[SAMPLE RULE] Valid State Government NOC required.",
+                                   "rule_id":  "RULE-002",
+                                   "checked_at":  "2026-10-25T10:00:00Z",
+                                   "status":  "COMPLIANT",
+                                   "is_sample":  true
+                               },
+                               {
+                                   "rule_name":  "Faculty Strength Compliance",
+                                   "id":  3,
+                                   "application_id":  1,
+                                   "evidence":  "OCR structured fields validated",
+                                   "severity":  "HIGH",
+                                   "description":  "[SAMPLE RULE] Minimum faculty strength norm check.",
+                                   "rule_id":  "RULE-003",
+                                   "checked_at":  "2026-10-25T10:00:00Z",
+                                   "status":  "COMPLIANT",
+                                   "is_sample":  true
+                               },
+                               {
+                                   "rule_name":  "Scrutiny Fee Payment Evidence",
+                                   "id":  4,
+                                   "application_id":  1,
+                                   "evidence":  "Pending bank reference confirmation",
+                                   "severity":  "HIGH",
+                                   "description":  "[SAMPLE RULE] Scrutiny fee receipt verification.",
+                                   "rule_id":  "RULE-004",
+                                   "checked_at":  "2026-10-25T10:00:00Z",
+                                   "status":  "PARTIAL",
+                                   "is_sample":  true
+                               },
+                               {
+                                   "rule_name":  "Document Expiry Validation",
+                                   "id":  5,
+                                   "application_id":  1,
+                                   "evidence":  "Document #4 expiry date (2026-10-15) has passed",
+                                   "severity":  "CRITICAL",
+                                   "description":  "[SAMPLE RULE] No expired certificates allowed.",
+                                   "rule_id":  "RULE-006",
+                                   "checked_at":  "2026-10-25T10:00:00Z",
+                                   "status":  "NON_COMPLIANT",
+                                   "is_sample":  true
+                               }
+                           ],
+    "auth_results":  [
+                         {
+                             "similarity_score":  0,
+                             "id":  1,
+                             "application_id":  1,
+                             "recommendation":  "No action required.",
+                             "duplicate_document_id":  null,
+                             "document_id":  1,
+                             "metadata_analysis":  {
+                                                       "pdf_creator":  "AICTE Demo Scanner",
+                                                       "page_count":  1
+                                                   },
+                             "anomaly_findings":  [
+
+                                                  ],
+                             "analyzed_at":  "2026-10-14T10:10:00Z",
+                             "explanation":  "No anomalies detected in preliminary cryptographic \u0026 metadata analysis.",
+                             "status":  "NO_ANOMALY"
+                         },
+                         {
+                             "similarity_score":  1,
+                             "id":  2,
+                             "application_id":  1,
+                             "recommendation":  "A duplicate document was found. Manual verification officer review required.",
+                             "duplicate_document_id":  1,
+                             "document_id":  4,
+                             "metadata_analysis":  {
+                                                       "pdf_creator":  "AICTE Demo Scanner",
+                                                       "page_count":  1
+                                                   },
+                             "anomaly_findings":  [
+                                                      {
+                                                          "detail":  "SHA-256: a8f5c2d9e1b30495...",
+                                                          "description":  "Exact SHA-256 cryptographic hash match with Document #1 (Notarized_Affidavit_DIT_2026.pdf).",
+                                                          "type":  "EXACT_SHA256_DUPLICATE",
+                                                          "severity":  "HIGH"
+                                                      }
+                                                  ],
+                             "analyzed_at":  "2026-10-24T15:05:00Z",
+                             "explanation":  "Preliminary analysis detected exact SHA-256 match with previously uploaded Document #1.",
+                             "status":  "POTENTIAL_DUPLICATE"
+                         }
+                     ],
+    "audit_logs":  [
+                       {
+                           "id":  1,
+                           "user_name":  "AICTE System Administrator",
+                           "entity_type":  "SYSTEM",
+                           "entity_id":  "1",
+                           "evidence":  {
+                                            "note":  "Initialized SIH 2026 Problem 26261 Demo Database"
+                                        },
+                           "timestamp":  "2026-10-01T09:00:00Z",
+                           "result":  "SUCCESS",
+                           "action":  "SYSTEM_SEED_INIT",
+                           "user_id":  1
+                       },
+                       {
+                           "id":  2,
+                           "user_name":  "Dr. Rajesh Kumar",
+                           "entity_type":  "DOCUMENT",
+                           "entity_id":  "1",
+                           "evidence":  {
+                                            "sha256":  "a8f5c2d9e1b30495...",
+                                            "filename":  "Notarized_Affidavit_DIT_2026.pdf"
+                                        },
+                           "timestamp":  "2026-10-14T10:00:00Z",
+                           "result":  "SUCCESS",
+                           "action":  "DOCUMENT_UPLOADED",
+                           "user_id":  3
+                       },
+                       {
+                           "id":  3,
+                           "user_name":  "Dr. Anand Verification Officer",
+                           "entity_type":  "DOCUMENT",
+                           "entity_id":  "1",
+                           "evidence":  {
+                                            "engine":  "pymupdf+tesseract",
+                                            "confidence":  0.94
+                                        },
+                           "timestamp":  "2026-10-14T10:05:00Z",
+                           "result":  "SUCCESS",
+                           "action":  "OCR_PROCESSED",
+                           "user_id":  2
+                       },
+                       {
+                           "id":  4,
+                           "user_name":  "Dr. Anand Verification Officer",
+                           "entity_type":  "DOCUMENT",
+                           "entity_id":  "4",
+                           "evidence":  {
+                                            "match":  "EXACT_SHA256",
+                                            "duplicate_of":  1
+                                        },
+                           "timestamp":  "2026-10-24T15:05:00Z",
+                           "result":  "POTENTIAL_DUPLICATE",
+                           "action":  "DOCUMENT_AUTH_ANALYZED",
+                           "user_id":  2
+                       },
+                       {
+                           "id":  5,
+                           "user_name":  "Dr. Anand Verification Officer",
+                           "entity_type":  "APPLICATION",
+                           "entity_id":  "1",
+                           "evidence":  {
+                                            "rules_checked":  5
+                                        },
+                           "timestamp":  "2026-10-25T10:00:00Z",
+                           "result":  "SUCCESS",
+                           "action":  "COMPLIANCE_CHECKED",
+                           "user_id":  2
+                       }
+                   ],
+    "infra_evidences":  [
+                            {
+                                "id":  1,
+                                "quality_score":  88.5,
+                                "application_id":  1,
+                                "document_id":  3,
+                                "category":  "BUILDING",
+                                "institution_id":  1,
+                                "status":  "APPROVED",
+                                "uploaded_at":  "2026-10-21T10:00:00Z"
+                            },
+                            {
+                                "id":  2,
+                                "quality_score":  82,
+                                "application_id":  1,
+                                "document_id":  3,
+                                "category":  "LAB",
+                                "institution_id":  1,
+                                "status":  "REVIEWED",
+                                "uploaded_at":  "2026-10-22T11:30:00Z"
+                            }
+                        ],
+    "renewals":  [
+                     {
+                         "reminder_90_sent":  true,
+                         "id":  1,
+                         "reminder_60_sent":  true,
+                         "document_id":  2,
+                         "institution_name":  "Demonstration Institute of Technology",
+                         "days_remaining":  24,
+                         "institution_id":  1,
+                         "renewal_due_date":  "2026-11-25",
+                         "status":  "ACTIVE",
+                         "reminder_30_sent":  true,
+                         "document_name":  "State_Govt_NOC_Karnataka_2026.pdf",
+                         "reminder_7_sent":  false
+                     },
+                     {
+                         "reminder_90_sent":  true,
+                         "id":  2,
+                         "reminder_60_sent":  true,
+                         "document_id":  3,
+                         "institution_name":  "Demonstration Institute of Technology",
+                         "days_remaining":  49,
+                         "institution_id":  1,
+                         "renewal_due_date":  "2026-12-20",
+                         "status":  "ACTIVE",
+                         "reminder_30_sent":  false,
+                         "document_name":  "Infrastructure_Adequacy_Cert_DIT.pdf",
+                         "reminder_7_sent":  false
+                     }
+                 ],
+    "categories":  [
+                       {
+                           "code":  "NIA",
+                           "name":  "New Institution Approval",
+                           "id":  1,
+                           "description":  "Approval of a new technical institution"
+                       },
+                       {
+                           "code":  "EOA",
+                           "name":  "Extension of Approval (EOA)",
+                           "id":  2,
+                           "description":  "Annual Extension of Approval for existing institutions"
+                       },
+                       {
+                           "code":  "CA",
+                           "name":  "Course Addition",
+                           "id":  3,
+                           "description":  "Adding new technical courses/programmes"
+                       },
+                       {
+                           "code":  "IM",
+                           "name":  "Intake Modification",
+                           "id":  4,
+                           "description":  "Increase or decrease of approved student intake"
+                       },
+                       {
+                           "code":  "IDM",
+                           "name":  "Institution Details Modification",
+                           "id":  5,
+                           "description":  "Modification of institutional details or address"
+                       },
+                       {
+                           "code":  "IU",
+                           "name":  "Infrastructure Upgrade",
+                           "id":  6,
+                           "description":  "Campus infrastructure expansion verification"
+                       }
+                   ],
+    "rules":  [
+                  {
+                      "name":  "Mandatory Affidavit Required",
+                      "id":  1,
+                      "version":  "1.0",
+                      "requirement":  "Upload signed affidavit document",
+                      "description":  "[SAMPLE RULE] Every application must include a notarized affidavit from the institution head.",
+                      "rule_id":  "RULE-001",
+                      "severity":  "CRITICAL",
+                      "validation_type":  "DOCUMENT_PRESENT",
+                      "category_name":  "All Categories",
+                      "is_sample":  true
+                  },
+                  {
+                      "name":  "Valid State Government NOC",
+                      "id":  2,
+                      "version":  "1.0",
+                      "requirement":  "Upload State Government NOC",
+                      "description":  "[SAMPLE RULE] New institution applications must include a valid State Government NOC.",
+                      "rule_id":  "RULE-002",
+                      "severity":  "CRITICAL",
+                      "validation_type":  "DOCUMENT_PRESENT",
+                      "category_name":  "New Institution Approval",
+                      "is_sample":  true
+                  },
+                  {
+                      "name":  "Faculty Strength Compliance",
+                      "id":  3,
+                      "version":  "1.0",
+                      "requirement":  "OCR field verification on faculty records",
+                      "description":  "[SAMPLE RULE] Minimum faculty-student ratio as per sample handbook norms.",
+                      "rule_id":  "RULE-003",
+                      "severity":  "HIGH",
+                      "validation_type":  "FIELD_CHECK",
+                      "category_name":  "All Categories",
+                      "is_sample":  true
+                  },
+                  {
+                      "name":  "Scrutiny Fee Payment Evidence",
+                      "id":  4,
+                      "version":  "1.0",
+                      "requirement":  "Upload payment receipt",
+                      "description":  "[SAMPLE RULE] Application must include scrutiny fee receipt.",
+                      "rule_id":  "RULE-004",
+                      "severity":  "HIGH",
+                      "validation_type":  "DOCUMENT_PRESENT",
+                      "category_name":  "All Categories",
+                      "is_sample":  true
+                  },
+                  {
+                      "name":  "Infrastructure Adequacy Certificate",
+                      "id":  5,
+                      "version":  "1.0",
+                      "requirement":  "Upload infrastructure certificate",
+                      "description":  "[SAMPLE RULE] Structural \u0026 infrastructure adequacy certificate required.",
+                      "rule_id":  "RULE-005",
+                      "severity":  "HIGH",
+                      "validation_type":  "DOCUMENT_PRESENT",
+                      "category_name":  "All Categories",
+                      "is_sample":  true
+                  },
+                  {
+                      "name":  "Document Expiry Validation",
+                      "id":  6,
+                      "version":  "1.0",
+                      "requirement":  "No expired documents in submission",
+                      "description":  "[SAMPLE RULE] Submitted certificates must not be past their validity date.",
+                      "rule_id":  "RULE-006",
+                      "severity":  "CRITICAL",
+                      "validation_type":  "EXPIRY_CHECK",
+                      "category_name":  "All Categories",
+                      "is_sample":  true
+                  }
+              ],
+    "doc_types":  [
+                      {
+                          "is_required":  true,
+                          "code":  "AFF",
+                          "name":  "Affidavit",
+                          "id":  1,
+                          "description":  "Mandatory notarized affidavit"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "UND",
+                          "name":  "Undertaking",
+                          "id":  2,
+                          "description":  "Institutional undertaking"
+                      },
+                      {
+                          "is_required":  false,
+                          "code":  "ACC",
+                          "name":  "Accreditation Certificate",
+                          "id":  3,
+                          "description":  "NAAC/NBA accreditation"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "NOC",
+                          "name":  "No Objection Certificate (NOC)",
+                          "id":  4,
+                          "description":  "State Government NOC"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "PERM",
+                          "name":  "Permission Certificate",
+                          "id":  5,
+                          "description":  "Competent authority permission"
+                      },
+                      {
+                          "is_required":  false,
+                          "code":  "PAL",
+                          "name":  "Previous Approval Letter",
+                          "id":  6,
+                          "description":  "Previous cycle AICTE EOA letter"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "FAC",
+                          "name":  "Faculty Records",
+                          "id":  7,
+                          "description":  "Faculty qualification \u0026 strength register"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "COURS",
+                          "name":  "Course Details",
+                          "id":  8,
+                          "description":  "Curriculum and syllabus"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "INFRA",
+                          "name":  "Infrastructure Certificate",
+                          "id":  9,
+                          "description":  "Structural \u0026 adequacy certificate"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "PAY",
+                          "name":  "Payment Evidence",
+                          "id":  10,
+                          "description":  "Scrutiny fee receipt"
+                      },
+                      {
+                          "is_required":  false,
+                          "code":  "FLOOR",
+                          "name":  "Floor Plan",
+                          "id":  11,
+                          "description":  "Approved building layout plan"
+                      },
+                      {
+                          "is_required":  true,
+                          "code":  "LAND",
+                          "name":  "Land Certificate",
+                          "id":  12,
+                          "description":  "Land ownership / lease deed"
+                      }
+                  ],
+    "alerts":  [
+                   {
+                       "message":  "Application AICTE-2026-NIA-00001 is missing the mandatory Land Certificate.",
+                       "id":  1,
+                       "application_id":  1,
+                       "document_id":  null,
+                       "is_resolved":  false,
+                       "created_at":  "2026-10-25T09:00:00Z",
+                       "is_read":  false,
+                       "institution_id":  1,
+                       "severity":  "HIGH",
+                       "title":  "Missing Document: Land Certificate",
+                       "alert_type":  "MISSING_DOCUMENT"
+                   },
+                   {
+                       "message":  "Duplicate_Copy_Affidavit_DIT.pdf matches SHA-256 hash of Notarized_Affidavit_DIT_2026.pdf. Manual review required.",
+                       "id":  2,
+                       "application_id":  1,
+                       "document_id":  4,
+                       "is_resolved":  false,
+                       "created_at":  "2026-10-26T11:20:00Z",
+                       "is_read":  false,
+                       "institution_id":  1,
+                       "severity":  "CRITICAL",
+                       "title":  "Exact SHA-256 Duplicate Document Detected",
+                       "alert_type":  "POTENTIAL_DUPLICATE"
+                   },
+                   {
+                       "message":  "State_Govt_NOC_Karnataka_2026.pdf expires on 2026-11-25 (24 days remaining).",
+                       "id":  3,
+                       "application_id":  1,
+                       "document_id":  2,
+                       "is_resolved":  false,
+                       "created_at":  "2026-10-28T08:15:00Z",
+                       "is_read":  false,
+                       "institution_id":  1,
+                       "severity":  "MEDIUM",
+                       "title":  "Certificate Renewal Due Within 30 Days",
+                       "alert_type":  "RENEWAL_DUE"
+                   },
+                   {
+                       "message":  "Application AICTE-2026-EOA-00005 returned for updated faculty register.",
+                       "id":  4,
+                       "application_id":  5,
+                       "document_id":  null,
+                       "is_resolved":  false,
+                       "created_at":  "2026-10-29T14:00:00Z",
+                       "is_read":  true,
+                       "institution_id":  3,
+                       "severity":  "HIGH",
+                       "title":  "Compliance Deficiency: Faculty Strength",
+                       "alert_type":  "COMPLIANCE_DEFICIENCY"
+                   }
+               ]
+}

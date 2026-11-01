@@ -1,0 +1,66 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /Resources << /Font << /F1 4 0 R >> >> /MediaBox [0 0 612 792] /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 3136 >>
+stream
+BT /F1 10 Tf 45 750 Td (======================================================================) Tj ET
+BT /F1 10 Tf 45 734 Td (ALL INDIA COUNCIL FOR TECHNICAL EDUCATION AICTE - REGULATION BUREAU) Tj ET
+BT /F1 10 Tf 45 718 Td (SMART INDIA HACKATHON 2026 | PROBLEM STATEMENT ID: 26261) Tj ET
+BT /F1 10 Tf 45 702 Td (AUTOMATED INSTITUTIONAL APPLICATION VALIDATION DOSSIER) Tj ET
+BT /F1 10 Tf 45 686 Td (======================================================================) Tj ET
+BT /F1 10 Tf 45 670 Td (Report ID: #1 | Generated At: 2026-11-01T07:43:39Z) Tj ET
+BT /F1 10 Tf 45 654 Td (Application ID: AICTE-2026-NIA-00001) Tj ET
+BT /F1 10 Tf 45 638 Td (Application Title: New Institution Approval - Demonstration Institute of Technology) Tj ET
+BT /F1 10 Tf 45 622 Td (Institution Name: Demonstration Institute of Technology) Tj ET
+BT /F1 10 Tf 45 606 Td (Approval Category: New Institution Approval) Tj ET
+BT /F1 10 Tf 45 590 Td (Current Application Status: UNDER_REVIEW) Tj ET
+BT /F1 10 Tf 45 574 Td (----------------------------------------------------------------------) Tj ET
+BT /F1 10 Tf 45 558 Td (1. DOCUMENT CHECKLIST & CRYPTOGRAPHIC HASH SUMMARY:) Tj ET
+BT /F1 10 Tf 45 542 Td (   - Notarized_Affidavit_DIT_2026.pdf [VERIFIED | SHA256: a8f5c2d9e1b304...]) Tj ET
+BT /F1 10 Tf 45 526 Td (   - State_Govt_NOC_Karnataka_2026.pdf [VERIFIED | SHA256: b7e4d1c8f2a405...]) Tj ET
+BT /F1 10 Tf 45 510 Td (   - Missing Required Document: Land Certificate [ALERT GENERATED]) Tj ET
+BT /F1 10 Tf 45 494 Td (----------------------------------------------------------------------) Tj ET
+BT /F1 10 Tf 45 478 Td (2. OCR STRUCTURED INFORMATION EXTRACTION:) Tj ET
+BT /F1 10 Tf 45 462 Td (   - Extracted Institution: Demonstration Institute of Technology) Tj ET
+BT /F1 10 Tf 45 446 Td (   - Certificate Number: AFF-KA-2026-0091 Confidence: 94%) Tj ET
+BT /F1 10 Tf 45 430 Td (   - Validity Window: 10/01/2026 to 10/01/2027) Tj ET
+BT /F1 10 Tf 45 414 Td (----------------------------------------------------------------------) Tj ET
+BT /F1 10 Tf 45 398 Td (3. AI DOCUMENT AUTHENTICATION & DUPLICATE DETECTION [PRELIMINARY]:) Tj ET
+BT /F1 10 Tf 45 382 Td (   - Document #1: NO_ANOMALY) Tj ET
+BT /F1 10 Tf 45 366 Td (   - Document #4: POTENTIAL_DUPLICATE Matches Document #1 SHA-256) Tj ET
+BT /F1 10 Tf 45 350 Td (   * Advisory: AI findings are preliminary indicators only.) Tj ET
+BT /F1 10 Tf 45 334 Td (----------------------------------------------------------------------) Tj ET
+BT /F1 10 Tf 45 318 Td (4. CONFIGURABLE COMPLIANCE ENGINE RESULTS [SAMPLE RULES]:) Tj ET
+BT /F1 10 Tf 45 302 Td (   - RULE-001 Mandatory Affidavit: COMPLIANT) Tj ET
+BT /F1 10 Tf 45 286 Td (   - RULE-002 Valid State NOC: COMPLIANT) Tj ET
+BT /F1 10 Tf 45 270 Td (   - RULE-003 Faculty Strength: COMPLIANT) Tj ET
+BT /F1 10 Tf 45 254 Td (   - RULE-004 Scrutiny Fee Receipt: PARTIAL) Tj ET
+BT /F1 10 Tf 45 238 Td (   - RULE-006 Document Expiry Validation: NON_COMPLIANT) Tj ET
+BT /F1 10 Tf 45 222 Td (----------------------------------------------------------------------) Tj ET
+BT /F1 10 Tf 45 206 Td (DISCLAIMER: Synthetic Demonstration Report for SIH 2026 PS #26261.) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000229 00000 n 
+0000000297 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+3486
+%%EOF
