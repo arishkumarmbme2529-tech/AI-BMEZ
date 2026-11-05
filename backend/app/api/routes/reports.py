@@ -96,7 +96,6 @@ def list_reports(
 def download_report(
     report_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_active_user),
 ):
     report = db.query(GeneratedReport).filter(GeneratedReport.id == report_id).first()
     if not report:

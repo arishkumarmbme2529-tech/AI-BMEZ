@@ -91,7 +91,7 @@ export const InstitutionDetailPage: React.FC = () => {
           <div>
             <div className="flex items-center gap-3 flex-wrap">
               <h1 className="text-2xl font-bold text-slate-900">{institution.name}</h1>
-              <StatusBadge status={institution.status} />
+              <StatusBadge status={institution.status || 'ACTIVE'} />
             </div>
             <p className="text-xs font-mono text-slate-500 mt-1">
               AICTE ID: <span className="font-bold text-brand-navy">{institution.aicte_id}</span> •{' '}

@@ -1,18 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import api from '../utils/api';
-import type {
-  Application,
-  ApplicationFormData,
-  ApplicationCategoryItem,
-  ApplicationChecklist,
-  ValidationSummary,
-  PaginatedResponse,
-  PaginationParams,
-} from '../types';
+import type { Application } from '../types';
 
-export function useApplications(params: PaginationParams = {}) {
-  const [data, setData] = useState<PaginatedResponse<Application>>({ items: [], total: 0, skip: 0, limit: 20 });
+export function useApplications(params: Record<string, any> = {}) {
+  const [items, setItems] = useState<Application[]>([]);
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,8 +13,10 @@ export function useApplications(params: PaginationParams = {}) {
     setLoading(true);
     setError(null);
     try {
-      const res = await api.get<PaginatedResponse<Application>>('/applications', { params });
-      setData(res.data);
+      const res = await api.get<any>('/applications', { params });
+      const list: Application[] = Array.isArray(res.data) ? res.data : res.data?.items || [];
+      setItems(list);
+      setTotal(list.length);
     } catch {
       setError('Failed to load applications');
     } finally {
@@ -29,29 +24,25 @@ export function useApplications(params: PaginationParams = {}) {
     }
   }, [JSON.stringify(params)]);
 
-  useEffect(() => { fetch(); }, [fetch]);
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
-  return { ...data, loading, error, refetch: fetch };
+  return { items, total, skip: 0, limit: 50, loading, error, refetch: fetch };
 }
 
 export function useApplicationCategories() {
-  const [categories, setCategories] = useState<ApplicationCategoryItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api.get<ApplicationCategoryItem[]>('/applications/categories')
-      .then((res) => setCategories(res.data))
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
-
-  return { categories, loading };
+  const categories = [
+    { id: 1, name: 'Extension of Approval (EOA)', code: 'EXTENSION_OF_APPROVAL' },
+    { id: 2, name: 'New Institution Approval', code: 'NEW_INSTITUTION' },
+    { id: 3, name: 'Increase in Intake', code: 'INCREASE_IN_INTAKE' },
+    { id: 4, name: 'New Course / Program', code: 'NEW_COURSE' },
+  ];
+  return { categories, loading: false };
 }
 
 export function useApplication(id: string | number | undefined) {
   const [application, setApplication] = useState<Application | null>(null);
-  const [checklist, setChecklist] = useState<ApplicationChecklist | null>(null);
-  const [validation, setValidation] = useState<ValidationSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -59,14 +50,8 @@ export function useApplication(id: string | number | undefined) {
     if (!id) return;
     setLoading(true);
     try {
-      const [appRes, checkRes, valRes] = await Promise.allSettled([
-        api.get<Application>(`/applications/${id}`),
-        api.get<ApplicationChecklist>(`/applications/${id}/checklist`),
-        api.get<ValidationSummary>(`/applications/${id}/validation-summary`),
-      ]);
-      if (appRes.status === 'fulfilled') setApplication(appRes.value.data);
-      if (checkRes.status === 'fulfilled') setChecklist(checkRes.value.data);
-      if (valRes.status === 'fulfilled') setValidation(valRes.value.data);
+      const res = await api.get<Application>(`/applications/${id}`);
+      setApplication(res.data);
     } catch {
       setError('Failed to load application');
     } finally {
@@ -74,19 +59,21 @@ export function useApplication(id: string | number | undefined) {
     }
   }, [id]);
 
-  useEffect(() => { fetch(); }, [fetch]);
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
-  return { application, checklist, validation, loading, error, refetch: fetch };
+  return { application, loading, error, refetch: fetch };
 }
 
 export function useCreateApplication() {
   const [loading, setLoading] = useState(false);
 
-  const create = async (data: ApplicationFormData): Promise<Application | null> => {
+  const create = async (data: Record<string, any>): Promise<Application | null> => {
     setLoading(true);
     try {
-      const res = await api.post<Application>('/applications', null, { params: data });
-      toast.success('Application created successfully');
+      const res = await api.post<Application>('/applications', data);
+      toast.success('Application created');
       return res.data;
     } catch (err: any) {
       toast.error(err.response?.data?.detail ?? 'Failed to create application');
@@ -105,8 +92,8 @@ export function useApplicationActions() {
   const submitApplication = async (id: string | number): Promise<boolean> => {
     setLoading(true);
     try {
-      await api.put(`/applications/${id}/submit`);
-      toast.success('Application submitted for official review');
+      await api.post(`/applications/${id}/submit`);
+      toast.success('Application submitted for review');
       return true;
     } catch (err: any) {
       toast.error(err.response?.data?.detail ?? 'Failed to submit application');
@@ -116,11 +103,16 @@ export function useApplicationActions() {
     }
   };
 
-  const updateStatus = async (id: string | number, new_status: string, review_notes?: string): Promise<boolean> => {
+  const updateStatus = async (
+    id: string | number,
+    new_status: string,
+    review_notes?: string
+  ): Promise<boolean> => {
     setLoading(true);
     try {
-      await api.put(`/applications/${id}/status`, null, {
-        params: { new_status, review_notes },
+      await api.put(`/applications/${id}/review`, {
+        status: new_status,
+        reviewer_remarks: review_notes,
       });
       toast.success(`Application status updated to ${new_status}`);
       return true;

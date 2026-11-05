@@ -1,0 +1,843 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@aibmez.demo",
+      "full_name": "System Administrator",
+      "role": "SUPER_ADMIN",
+      "institution_id": null,
+      "is_active": true,
+      "created_at": "2026-11-02T16:09:43.840Z",
+      "password_hash": "3056629f500232b98a8264dc9de5ba4b0588eaa518d4a26584c9c906468e97fe"
+    },
+    {
+      "id": 2,
+      "email": "institute@aibmez.demo",
+      "full_name": "NIET Institute Coordinator",
+      "role": "INSTITUTION_ADMIN",
+      "institution_id": 1,
+      "is_active": true,
+      "created_at": "2026-11-02T16:09:43.840Z",
+      "password_hash": "a16444933faf8d9f00fd1e812cab4f03467ca334270a784c925db68b9e9a5771"
+    },
+    {
+      "id": 3,
+      "email": "reviewer@aibmez.demo",
+      "full_name": "Dr. Ramesh Kulkarni (Document Reviewer)",
+      "role": "OFFICER",
+      "institution_id": null,
+      "is_active": true,
+      "created_at": "2026-11-02T16:09:43.840Z",
+      "password_hash": "c15b8d0b23045b0302b5538b3ba65ab70de0296d9c6e164231e5fd356ba15819"
+    },
+    {
+      "id": 4,
+      "email": "admin@aicte.gov.in",
+      "full_name": "Dr. Rajesh Kumar (AICTE Director)",
+      "role": "SUPER_ADMIN",
+      "institution_id": null,
+      "is_active": true,
+      "created_at": "2026-11-02T16:09:43.840Z",
+      "password_hash": "3056629f500232b98a8264dc9de5ba4b0588eaa518d4a26584c9c906468e97fe"
+    },
+    {
+      "id": 5,
+      "email": "officer@aicte.gov.in",
+      "full_name": "Priya Sharma (Verification Officer)",
+      "role": "OFFICER",
+      "institution_id": null,
+      "is_active": true,
+      "created_at": "2026-11-02T16:09:43.840Z",
+      "password_hash": "40bb474de72bf1de54a6ca5da3f6144505513999ba3d4890ee343f2e0a6d5673"
+    },
+    {
+      "id": 6,
+      "email": "inst1@example.edu.in",
+      "full_name": "Prof. Suresh Nair",
+      "role": "INSTITUTION_ADMIN",
+      "institution_id": 1,
+      "is_active": true,
+      "created_at": "2026-11-02T16:09:43.840Z",
+      "password_hash": "77ea84612b20e293f3b5713b5a9baa79e9a623507b28a5d255999843e5afb2a7"
+    }
+  ],
+  "institutions": [
+    {
+      "id": 1,
+      "name": "National Institute of Engineering and Technology",
+      "aicte_id": "AICTE-2026-NIET-001",
+      "type": "PRIVATE",
+      "state": "Karnataka",
+      "district": "Bengaluru Urban",
+      "city": "Bengaluru",
+      "address": "Plot 14, Knowledge Park Road, Bengaluru",
+      "pincode": "560001",
+      "established_year": 2004,
+      "affiliated_university": "Visvesvaraya Technological University",
+      "total_intake": 720,
+      "contact_email": "institute@aibmez.demo",
+      "contact_phone": "9876543210",
+      "website": "https://niet.edu.in",
+      "compliance_score": 87.2,
+      "created_at": "2026-11-02T16:09:43.840Z"
+    },
+    {
+      "id": 2,
+      "name": "Apex College of Technology and Research",
+      "aicte_id": "AICTE-2026-ACTR-002",
+      "type": "AUTONOMOUS",
+      "state": "Maharashtra",
+      "district": "Pune",
+      "city": "Pune",
+      "address": "45 Innovation Highway, Hinjewadi, Pune",
+      "pincode": "411057",
+      "established_year": 1999,
+      "affiliated_university": "Savitribai Phule Pune University",
+      "total_intake": 900,
+      "contact_email": "registrar@actr.edu.in",
+      "contact_phone": "9823011223",
+      "website": "https://actr.edu.in",
+      "compliance_score": 68.5,
+      "created_at": "2026-11-02T16:09:43.840Z"
+    },
+    {
+      "id": 3,
+      "name": "Delhi School of Pharmaceutical Sciences",
+      "aicte_id": "AICTE-2026-DSPS-003",
+      "type": "GOVERNMENT",
+      "state": "Delhi",
+      "district": "South Delhi",
+      "city": "New Delhi",
+      "address": "Sector 3, Pushp Vihar, New Delhi",
+      "pincode": "110017",
+      "established_year": 1995,
+      "affiliated_university": "Delhi University",
+      "total_intake": 360,
+      "contact_email": "director@dsps.ac.in",
+      "contact_phone": "9811223344",
+      "website": "https://dsps.ac.in",
+      "compliance_score": 91,
+      "created_at": "2026-11-02T16:09:43.840Z"
+    },
+    {
+      "id": 4,
+      "name": "Southern Regional Engineering College",
+      "aicte_id": "AICTE-2026-SREC-004",
+      "type": "DEEMED",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "address": "Avinashi Road, Peelamedu, Coimbatore",
+      "pincode": "641004",
+      "established_year": 2001,
+      "affiliated_university": "Anna University",
+      "total_intake": 600,
+      "contact_email": "principal@srec.edu.in",
+      "contact_phone": "9443322110",
+      "website": "https://srec.edu.in",
+      "compliance_score": 54,
+      "created_at": "2026-11-02T16:09:43.840Z"
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "application_number": "APP-2026-1001",
+      "institution_id": 1,
+      "institution_name": "National Institute of Engineering and Technology",
+      "academic_year": "2026-27",
+      "application_type": "EXTENSION_OF_APPROVAL",
+      "status": "UNDER_REVIEW",
+      "program_names": "B.Tech CSE, B.Tech ECE, B.Tech AI & Data Science, M.Tech VLSI",
+      "proposed_intake": 720,
+      "Completeness_score": 80,
+      "risk_score": 22,
+      "assigned_officer_id": 3,
+      "reviewer_remarks": "Affidavit, Fire NOC, Building Plan verified. Waiting for updated Faculty List.",
+      "submitted_at": "2026-02-14T10:30:00Z",
+      "reviewed_at": null,
+      "created_at": "2026-02-10T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "application_number": "APP-2026-1002",
+      "institution_id": 2,
+      "institution_name": "Apex College of Technology and Research",
+      "academic_year": "2026-27",
+      "application_type": "INCREASE_IN_INTAKE",
+      "status": "DEFICIENCY_RAISED",
+      "program_names": "B.Tech Computer Engineering, B.Tech Mechanical, MBA",
+      "proposed_intake": 900,
+      "Completeness_score": 70,
+      "risk_score": 48,
+      "assigned_officer_id": 3,
+      "reviewer_remarks": "Fire Safety Certificate expired and duplicate Land Ownership hash flagged.",
+      "submitted_at": "2026-02-16T11:15:00Z",
+      "reviewed_at": "2026-02-20T14:20:00Z",
+      "created_at": "2026-02-12T08:30:00Z"
+    },
+    {
+      "id": 3,
+      "application_number": "APP-2026-1003",
+      "institution_id": 3,
+      "institution_name": "Delhi School of Pharmaceutical Sciences",
+      "academic_year": "2026-27",
+      "application_type": "EXTENSION_OF_APPROVAL",
+      "status": "APPROVED",
+      "program_names": "B.Pharm, M.Pharm Pharmaceutics, Pharm.D",
+      "proposed_intake": 360,
+      "Completeness_score": 100,
+      "risk_score": 8,
+      "assigned_officer_id": 3,
+      "reviewer_remarks": "All mandatory regulatory documents authenticated and verified.",
+      "submitted_at": "2026-02-05T09:45:00Z",
+      "reviewed_at": "2026-02-18T16:00:00Z",
+      "created_at": "2026-02-01T10:00:00Z"
+    },
+    {
+      "id": 4,
+      "application_number": "APP-2026-1004",
+      "institution_id": 4,
+      "institution_name": "Southern Regional Engineering College",
+      "academic_year": "2026-27",
+      "application_type": "NEW_INSTITUTION",
+      "status": "SUBMITTED",
+      "program_names": "B.E. Civil Engineering, B.E. Electrical Engineering",
+      "proposed_intake": 600,
+      "Completeness_score": 60,
+      "risk_score": 64,
+      "assigned_officer_id": 3,
+      "reviewer_remarks": null,
+      "submitted_at": "2026-02-22T15:10:00Z",
+      "reviewed_at": null,
+      "created_at": "2026-02-19T12:00:00Z"
+    }
+  ],
+  "documents": [
+    {
+      "id": 1,
+      "institution_id": 1,
+      "application_id": 1,
+      "document_type": "AFFIDAVIT",
+      "filename": "NIET_Notarized_Affidavit_2026.pdf",
+      "file_path": "/uploads/NIET_Notarized_Affidavit_2026.pdf",
+      "file_size": 412800,
+      "mime_type": "application/pdf",
+      "file_hash": "8f14e45fceea167a5a36dedd4bea25438f14e45fceea167a5a36dedd4bea2543",
+      "status": "DUPLICATE",
+      "extracted_text": "AFFIDAVIT ON RS 100 NON-JUDICIAL STAMP PAPER\nInstitution: National Institute of Engineering and Technology\nAICTE ID: AICTE-2026-NIET-001\nIssued Date: 2026-01-15\nValid Until: 2027-06-30\nNotary Registration No: KAR-BLR-8821\nSigned by Chairman and Principal.",
+      "extracted_metadata": {
+        "word_count": 34,
+        "has_dates": true,
+        "has_signatures": true,
+        "has_stamp_keywords": true,
+        "detected_dates": [
+          "2026-01-15",
+          "2027-06-30"
+        ]
+      },
+      "authenticity_score": 96,
+      "fraud_Auto_flags": [],
+      "is_duplicate": true,
+      "duplicate_of_id": 7,
+      "issue_date": "2026-01-15T00:00:00Z",
+      "expiry_date": "2027-06-30T00:00:00Z",
+      "is_expired": false,
+      "uploaded_by": 2,
+      "verified_by": 1,
+      "verified_at": "2026-11-05T14:19:32.208Z",
+      "created_at": "2026-02-14T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "institution_id": 1,
+      "application_id": 1,
+      "document_type": "BUILDING_PLAN",
+      "filename": "NIET_Approved_Building_Plan_2026.pdf",
+      "file_path": "/uploads/NIET_Approved_Building_Plan_2026.pdf",
+      "file_size": 1245184,
+      "mime_type": "application/pdf",
+      "file_hash": "c9f0f895fb98ab9159f51fd0297e236dc9f0f895fb98ab9159f51fd0297e236d",
+      "status": "VERIFIED",
+      "extracted_text": "DIRECTORATE OF TOWN AND COUNTRY PLANNING - APPROVED BUILDING PLAN\nInstitution: National Institute of Engineering and Technology\nTotal Built-up Area: 18,450 Sq.m\nApproval Ref: DTCP/BLR/2024/119\nIssued: 2024-05-10\nValid Through: 2029-05-09\nAuthorized Seal & Signature Verified.",
+      "extracted_metadata": {
+        "word_count": 36,
+        "has_dates": true,
+        "has_signatures": true,
+        "has_stamp_keywords": true,
+        "detected_dates": [
+          "2024-05-10",
+          "2029-05-09"
+        ]
+      },
+      "authenticity_score": 94.5,
+      "fraud_Auto_flags": [],
+      "is_duplicate": false,
+      "duplicate_of_id": null,
+      "issue_date": "2024-05-10T00:00:00Z",
+      "expiry_date": "2029-05-09T00:00:00Z",
+      "is_expired": false,
+      "uploaded_by": 2,
+      "verified_by": 3,
+      "verified_at": "2026-02-15T11:35:00Z",
+      "created_at": "2026-02-14T10:05:00Z"
+    },
+    {
+      "id": 3,
+      "institution_id": 1,
+      "application_id": 1,
+      "document_type": "FIRE_NOC",
+      "filename": "NIET_Fire_Safety_NOC_2026.pdf",
+      "file_path": "/uploads/NIET_Fire_Safety_NOC_2026.pdf",
+      "file_size": 524288,
+      "mime_type": "application/pdf",
+      "file_hash": "45c48cce2e2d7fbdea1afc51c7c6ad2645c48cce2e2d7fbdea1afc51c7c6ad26",
+      "status": "VERIFIED",
+      "extracted_text": "KARNATAKA STATE FIRE AND EMERGENCY SERVICES\nNO OBJECTION CERTIFICATE (RENEWAL)\nCertifies that National Institute of Engineering and Technology complies with NBC Part-4 fire safety norms.\nCertificate No: KSFES/NOC/2026/408\nIssue Date: 2026-01-20\nChief Fire Officer Signature & Official Seal.",
+      "extracted_metadata": {
+        "word_count": 42,
+        "has_dates": true,
+        "has_signatures": true,
+        "has_stamp_keywords": true,
+        "detected_dates": [
+          "2026-01-20"
+        ]
+      },
+      "authenticity_score": 92,
+      "fraud_Auto_flags": [
+        "Renewal reminder: Certificate expires within 30 days"
+      ],
+      "is_duplicate": false,
+      "duplicate_of_id": null,
+      "issue_date": "2026-01-20T00:00:00Z",
+      "expiry_date": "2026-11-30T16:09:43.842Z",
+      "is_expired": false,
+      "uploaded_by": 2,
+      "verified_by": 3,
+      "verified_at": "2026-02-15T11:45:00Z",
+      "created_at": "2026-02-14T10:12:00Z"
+    },
+    {
+      "id": 4,
+      "institution_id": 1,
+      "application_id": 1,
+      "document_type": "FACULTY_LIST",
+      "filename": "NIET_Faculty_Roster_2026_27.pdf",
+      "file_path": "/uploads/NIET_Notarized_Affidavit_2026.pdf",
+      "file_size": 318400,
+      "mime_type": "application/pdf",
+      "file_hash": "d3d9446802a44259755d38e6d163e820d3d9446802a44259755d38e6d163e820",
+      "status": "PENDING",
+      "extracted_text": "FACULTY ROSTER ACADEMIC YEAR 2026-27\nNational Institute of Engineering and Technology\nTotal Sanctioned Intake: 720 | Total Faculty: 48 (Professors: 6, Associate Professors: 14, Assistant Professors: 28)\nFaculty Student Ratio: 1:15\nSubmitted for verification.",
+      "extracted_metadata": {
+        "word_count": 35,
+        "has_dates": true,
+        "has_signatures": true,
+        "has_stamp_keywords": false,
+        "detected_dates": [
+          "2026-02-14"
+        ]
+      },
+      "authenticity_score": 86,
+      "fraud_Auto_flags": [],
+      "is_duplicate": false,
+      "duplicate_of_id": null,
+      "issue_date": "2026-02-14T00:00:00Z",
+      "expiry_date": "2027-05-31T00:00:00Z",
+      "is_expired": false,
+      "uploaded_by": 2,
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-02-14T10:18:00Z"
+    },
+    {
+      "id": 5,
+      "institution_id": 1,
+      "application_id": 1,
+      "document_type": "AUDIT_STATEMENT",
+      "filename": "NIET_Audited_Financial_Statement_FY25.pdf",
+      "file_path": "/uploads/NIET_Notarized_Affidavit_2026.pdf",
+      "file_size": 689120,
+      "mime_type": "application/pdf",
+      "file_hash": "6512bd43d9caa6e02c990b0a82652dca6512bd43d9caa6e02c990b0a82652dca",
+      "status": "PENDING",
+      "extracted_text": "CHARTERED ACCOUNTANT AUDIT REPORT FY 2024-25\nInstitution: National Institute of Engineering and Technology\nUDIN: 25041289BMK4421\nTotal Corpus Fund: INR 4.85 Crore\nSigned by Statutory Auditor with ICAI Membership Seal.",
+      "extracted_metadata": {
+        "word_count": 31,
+        "has_dates": true,
+        "has_signatures": true,
+        "has_stamp_keywords": true,
+        "detected_dates": [
+          "2025-09-30"
+        ]
+      },
+      "authenticity_score": 91,
+      "fraud_Auto_flags": [],
+      "is_duplicate": false,
+      "duplicate_of_id": null,
+      "issue_date": "2025-09-30T00:00:00Z",
+      "expiry_date": "2026-09-30T00:00:00Z",
+      "is_expired": false,
+      "uploaded_by": 2,
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-02-14T10:22:00Z"
+    },
+    {
+      "id": 6,
+      "institution_id": 2,
+      "application_id": 2,
+      "document_type": "FIRE_NOC",
+      "filename": "ACTR_Fire_Safety_Certificate_2024.pdf",
+      "file_path": "/uploads/NIET_Fire_Safety_NOC_2026.pdf",
+      "file_size": 298100,
+      "mime_type": "application/pdf",
+      "file_hash": "aab3238922bcc25a6f606eb525ffdc56aab3238922bcc25a6f606eb525ffdc56",
+      "status": "EXPIRED",
+      "extracted_text": "MAHARASHTRA FIRE SERVICES - PROVISIONAL FIRE NOC\nInstitution: Apex College of Technology and Research, Pune\nIssued Date: 2024-01-10\nExpiry Date: 2025-01-09\nStatus: Expired prior to 2026-27 academic session.",
+      "extracted_metadata": {
+        "word_count": 29,
+        "has_dates": true,
+        "has_signatures": true,
+        "has_stamp_keywords": true,
+        "detected_dates": [
+          "2024-01-10",
+          "2025-01-09"
+        ]
+      },
+      "authenticity_score": 58,
+      "fraud_Auto_flags": [
+        "Document validity period has expired (Expired on 2025-01-09)"
+      ],
+      "is_duplicate": false,
+      "duplicate_of_id": null,
+      "issue_date": "2024-01-10T00:00:00Z",
+      "expiry_date": "2025-01-09T00:00:00Z",
+      "is_expired": true,
+      "uploaded_by": 1,
+      "verified_by": 3,
+      "verified_at": "2026-02-19T15:10:00Z",
+      "created_at": "2026-02-16T11:00:00Z"
+    },
+    {
+      "id": 7,
+      "institution_id": 2,
+      "application_id": 2,
+      "document_type": "AFFIDAVIT",
+      "filename": "ACTR_Submitted_Affidavit_Copy.pdf",
+      "file_path": "/uploads/NIET_Notarized_Affidavit_2026.pdf",
+      "file_size": 412800,
+      "mime_type": "application/pdf",
+      "file_hash": "8f14e45fceea167a5a36dedd4bea25438f14e45fceea167a5a36dedd4bea2543",
+      "status": "DUPLICATE",
+      "extracted_text": "AFFIDAVIT ON RS 100 NON-JUDICIAL STAMP PAPER\nDuplicate SHA-256 hash match detected against Document #1 (NIET_Notarized_Affidavit_2026.pdf).",
+      "extracted_metadata": {
+        "word_count": 19,
+        "has_dates": false,
+        "has_signatures": true,
+        "has_stamp_keywords": true,
+        "detected_dates": []
+      },
+      "authenticity_score": 35,
+      "fraud_Auto_flags": [
+        "Exact SHA-256 hash match with Document ID #1 (NIET_Notarized_Affidavit_2026.pdf)",
+        "Cross-institution duplicate submission flagged"
+      ],
+      "is_duplicate": true,
+      "duplicate_of_id": 1,
+      "issue_date": "2026-01-15T00:00:00Z",
+      "expiry_date": "2027-06-30T00:00:00Z",
+      "is_expired": false,
+      "uploaded_by": 1,
+      "verified_by": 3,
+      "verified_at": "2026-02-19T15:20:00Z",
+      "created_at": "2026-02-16T11:05:00Z"
+    },
+    {
+      "id": 8,
+      "institution_id": 4,
+      "application_id": 4,
+      "document_type": "LAND_OWNERSHIP",
+      "filename": "SREC_Land_Deed_Unverified_Scan.pdf",
+      "file_path": "/uploads/NIET_Notarized_Affidavit_2026.pdf",
+      "file_size": 195400,
+      "mime_type": "application/pdf",
+      "file_hash": "9bf31c7ff062936a96d3c8bd1f8f2ff39bf31c7ff062936a96d3c8bd1f8f2ff3",
+      "status": "SUSPICIOUS",
+      "extracted_text": "LAND REGISTRATION EXTRACT\nSurvey No: 412/B Coimbatore\nMissing official sub-registrar seal and signature block. Metadata shows image splicing modification.",
+      "extracted_metadata": {
+        "word_count": 20,
+        "has_dates": false,
+        "has_signatures": false,
+        "has_stamp_keywords": false,
+        "detected_dates": []
+      },
+      "authenticity_score": 41,
+      "fraud_Auto_flags": [
+        "Missing authorized signature and official registrar stamp keywords",
+        "Low OCR confidence and metadata editing software trace detected"
+      ],
+      "is_duplicate": false,
+      "duplicate_of_id": null,
+      "issue_date": "2023-06-01T00:00:00Z",
+      "expiry_date": null,
+      "is_expired": false,
+      "uploaded_by": 1,
+      "verified_by": null,
+      "verified_at": null,
+      "created_at": "2026-02-22T14:50:00Z"
+    },
+    {
+      "id": 9,
+      "institution_id": 3,
+      "application_id": 3,
+      "document_type": "EQUIPMENT_SPEC",
+      "filename": "DSPS_Lab_Equipment_Inventory_2026.pdf",
+      "file_path": "/uploads/NIET_Approved_Building_Plan_2026.pdf",
+      "file_size": 482000,
+      "mime_type": "application/pdf",
+      "file_hash": "c20ad4d76fe97759aa27a0c99bff6710c20ad4d76fe97759aa27a0c99bff6710",
+      "status": "VERIFIED",
+      "extracted_text": "DELHI SCHOOL OF PHARMACEUTICAL SCIENCES\nLABORATORY EQUIPMENT & INFRASTRUCTURE CERTIFICATE\nHPLC Systems, UV Spectrophotometers, Dissolution Testers verified as per PCI & AICTE norms.\nIssued: 2026-01-12 | Valid Until: 2027-06-30\nPrincipal Signature & Official Seal.",
+      "extracted_metadata": {
+        "word_count": 34,
+        "has_dates": true,
+        "has_signatures": true,
+        "has_stamp_keywords": true,
+        "detected_dates": [
+          "2026-01-12",
+          "2027-06-30"
+        ]
+      },
+      "authenticity_score": 95,
+      "fraud_Auto_flags": [],
+      "is_duplicate": false,
+      "duplicate_of_id": null,
+      "issue_date": "2026-01-12T00:00:00Z",
+      "expiry_date": "2027-06-30T00:00:00Z",
+      "is_expired": false,
+      "uploaded_by": 1,
+      "verified_by": 3,
+      "verified_at": "2026-02-18T15:30:00Z",
+      "created_at": "2026-02-05T09:30:00Z"
+    }
+  ],
+  "compliance_records": [
+    {
+      "id": 1,
+      "institution_id": 1,
+      "academic_year": "2026-27",
+      "faculty_student_ratio": 15,
+      "total_faculty": 48,
+      "phd_faculty_count": 16,
+      "total_students": 720,
+      "land_area_acres": 10,
+      "built_up_area_sqm": 18450,
+      "classrooms_count": 20,
+      "labs_count": 12,
+      "library_books_count": 22000,
+      "library_journals_count": 50,
+      "computers_count": 310,
+      "internet_bandwidth_mbps": 400,
+      "annual_budget_lakhs": 1450,
+      "actual_utilization_lakhs": 1320,
+      "overall_compliance_score": 87.2,
+      "faculty_score": 90,
+      "infrastructure_score": 100,
+      "equipment_score": 100,
+      "financial_score": 86,
+      "document_compliance_score": 25,
+      "risk_level": "LOW",
+      "deficiencies": [
+        "All 8 mandatory institutional documents are not yet verified"
+      ],
+      "recommendations": [
+        "Address flagged faculty/document deficiencies prior to final committee review"
+      ],
+      "evaluated_at": "2026-11-05T14:18:55.895Z"
+    },
+    {
+      "id": 2,
+      "institution_id": 2,
+      "academic_year": "2026-27",
+      "faculty_student_ratio": 18.5,
+      "total_faculty": 48,
+      "phd_faculty_count": 11,
+      "total_students": 890,
+      "land_area_acres": 8.2,
+      "built_up_area_sqm": 15200,
+      "classrooms_count": 20,
+      "labs_count": 11,
+      "library_books_count": 21000,
+      "library_journals_count": 42,
+      "computers_count": 240,
+      "internet_bandwidth_mbps": 300,
+      "annual_budget_lakhs": 1200,
+      "actual_utilization_lakhs": 980,
+      "overall_compliance_score": 68.5,
+      "faculty_score": 72,
+      "infrastructure_score": 74,
+      "equipment_score": 70,
+      "financial_score": 68,
+      "document_compliance_score": 58.5,
+      "risk_level": "MEDIUM",
+      "deficiencies": [
+        "Expired Fire Safety Certificate (expired 2025-01-09)",
+        "Duplicate document hash detected on submitted Affidavit"
+      ],
+      "recommendations": [
+        "Submit renewed Fire NOC from Maharashtra Fire Services immediately",
+        "Replace duplicate Affidavit with original institution-specific notarized affidavit"
+      ],
+      "evaluated_at": "2026-11-02T16:09:43.840Z"
+    },
+    {
+      "id": 3,
+      "institution_id": 3,
+      "academic_year": "2026-27",
+      "faculty_student_ratio": 12,
+      "total_faculty": 30,
+      "phd_faculty_count": 18,
+      "total_students": 360,
+      "land_area_acres": 12,
+      "built_up_area_sqm": 14800,
+      "classrooms_count": 16,
+      "labs_count": 12,
+      "library_books_count": 32000,
+      "library_journals_count": 95,
+      "computers_count": 180,
+      "internet_bandwidth_mbps": 1000,
+      "annual_budget_lakhs": 1600,
+      "actual_utilization_lakhs": 1510,
+      "overall_compliance_score": 91,
+      "faculty_score": 94,
+      "infrastructure_score": 92,
+      "equipment_score": 90,
+      "financial_score": 89,
+      "document_compliance_score": 90,
+      "risk_level": "LOW",
+      "deficiencies": [],
+      "recommendations": [
+        "Maintain current faculty-student ratio and annual audit schedule"
+      ],
+      "evaluated_at": "2026-11-02T16:09:43.840Z"
+    },
+    {
+      "id": 4,
+      "institution_id": 4,
+      "academic_year": "2026-27",
+      "faculty_student_ratio": 22,
+      "total_faculty": 27,
+      "phd_faculty_count": 5,
+      "total_students": 594,
+      "land_area_acres": 5.5,
+      "built_up_area_sqm": 9800,
+      "classrooms_count": 12,
+      "labs_count": 7,
+      "library_books_count": 11500,
+      "library_journals_count": 24,
+      "computers_count": 140,
+      "internet_bandwidth_mbps": 150,
+      "annual_budget_lakhs": 820,
+      "actual_utilization_lakhs": 640,
+      "overall_compliance_score": 54,
+      "faculty_score": 52,
+      "infrastructure_score": 58,
+      "equipment_score": 55,
+      "financial_score": 60,
+      "document_compliance_score": 45,
+      "risk_level": "HIGH",
+      "deficiencies": [
+        "Suspicious Land Ownership document flagged for missing official registrar seal",
+        "Faculty-student ratio (1:22) violates AICTE prescribed 1:15 norm"
+      ],
+      "recommendations": [
+        "Recruit minimum 13 additional full-time faculty members",
+        "Provide certified Sub-Registrar copy of Land Ownership Deed"
+      ],
+      "evaluated_at": "2026-11-02T16:09:43.840Z"
+    }
+  ],
+  "reports": [
+    {
+      "id": 4,
+      "institution_id": 1,
+      "application_id": 1,
+      "report_type": "COMPLIANCE_SUMMARY",
+      "title": "COMPLIANCE SUMMARY - National Institute of Engineering and Technology",
+      "file_path": "/reports-files/AIBMEZ_Report_1_1793889274982.pdf",
+      "download_url": "/reports-files/AIBMEZ_Report_1_1793889274982.pdf",
+      "summary_data": {
+        "institution_name": "National Institute of Engineering and Technology",
+        "aicte_id": "AICTE-2026-NIET-001",
+        "compliance_score": 87.2,
+        "verified_documents": 2,
+        "pending_documents": 2,
+        "duplicate_documents": 1,
+        "suspicious_documents": 0,
+        "expired_documents": 0
+      },
+      "generated_by": 1,
+      "created_at": "2026-11-05T14:34:34.984Z"
+    },
+    {
+      "id": 3,
+      "institution_id": 1,
+      "application_id": 1,
+      "report_type": "COMPLIANCE_SUMMARY",
+      "title": "COMPLIANCE SUMMARY - National Institute of Engineering and Technology",
+      "file_path": "/reports-files/AIBMEZ_Report_1_1793888354520.pdf",
+      "download_url": "/reports-files/AIBMEZ_Report_1_1793888354520.pdf",
+      "summary_data": {
+        "institution_name": "National Institute of Engineering and Technology",
+        "aicte_id": "AICTE-2026-NIET-001",
+        "compliance_score": 87.2,
+        "verified_documents": 2,
+        "pending_documents": 2,
+        "duplicate_documents": 1,
+        "suspicious_documents": 0,
+        "expired_documents": 0
+      },
+      "generated_by": 1,
+      "created_at": "2026-11-05T14:19:14.523Z"
+    },
+    {
+      "id": 1,
+      "institution_id": 1,
+      "application_id": 1,
+      "report_type": "COMPLIANCE_SUMMARY",
+      "title": "Compliance & Document Verification Report - National Institute of Engineering and Technology",
+      "file_path": "/reports-files/NIET_Compliance_Report_2026.pdf",
+      "summary_data": {
+        "institution_name": "National Institute of Engineering and Technology",
+        "aicte_id": "AICTE-2026-NIET-001",
+        "compliance_score": 82,
+        "verified_documents": 3,
+        "pending_documents": 2
+      },
+      "generated_by": 1,
+      "created_at": "2026-02-20T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "institution_id": 2,
+      "application_id": 2,
+      "report_type": "DEFICIENCY_REPORT",
+      "title": "Deficiency & Document Audit Report - Apex College of Technology and Research",
+      "file_path": "/reports-files/ACTR_Deficiency_Report_2026.pdf",
+      "summary_data": {
+        "institution_name": "Apex College of Technology and Research",
+        "aicte_id": "AICTE-2026-ACTR-002",
+        "compliance_score": 68.5,
+        "expired_documents": 1,
+        "duplicate_documents": 1
+      },
+      "generated_by": 3,
+      "created_at": "2026-02-21T09:30:00Z"
+    }
+  ],
+  "audit_logs": [
+    {
+      "id": 8,
+      "user_id": 1,
+      "user_email": "admin@aibmez.demo",
+      "action": "PDF_REPORT_GENERATED",
+      "entity_type": "Report",
+      "entity_id": 4,
+      "details": {
+        "title": "COMPLIANCE SUMMARY - National Institute of Engineering and Technology"
+      },
+      "created_at": "2026-11-05T14:34:34.984Z"
+    },
+    {
+      "id": 7,
+      "user_id": 1,
+      "user_email": "admin@aibmez.demo",
+      "action": "DOCUMENT_MARKED_VERIFIED",
+      "entity_type": "Document",
+      "entity_id": 1,
+      "details": {
+        "filename": "NIET_Notarized_Affidavit_2026.pdf",
+        "status": "VERIFIED"
+      },
+      "created_at": "2026-11-05T14:19:32.208Z"
+    },
+    {
+      "id": 6,
+      "user_id": 1,
+      "user_email": "admin@aibmez.demo",
+      "action": "PDF_REPORT_GENERATED",
+      "entity_type": "Report",
+      "entity_id": 3,
+      "details": {
+        "title": "COMPLIANCE SUMMARY - National Institute of Engineering and Technology"
+      },
+      "created_at": "2026-11-05T14:19:14.523Z"
+    },
+    {
+      "id": 1,
+      "user_id": 3,
+      "user_email": "reviewer@aibmez.demo",
+      "action": "DOCUMENT_VERIFIED",
+      "entity_type": "Document",
+      "entity_id": 1,
+      "details": {
+        "filename": "NIET_Notarized_Affidavit_2026.pdf",
+        "status": "VERIFIED"
+      },
+      "created_at": "2026-02-15T11:20:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 3,
+      "user_email": "reviewer@aibmez.demo",
+      "action": "DUPLICATE_DETECTED",
+      "entity_type": "Document",
+      "entity_id": 7,
+      "details": {
+        "filename": "ACTR_Submitted_Affidavit_Copy.pdf",
+        "duplicate_of": 1,
+        "status": "DUPLICATE"
+      },
+      "created_at": "2026-02-19T15:20:00Z"
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "user_email": "reviewer@aibmez.demo",
+      "action": "EXPIRED_DOCUMENT_FLAGGED",
+      "entity_type": "Document",
+      "entity_id": 6,
+      "details": {
+        "filename": "ACTR_Fire_Safety_Certificate_2024.pdf",
+        "status": "EXPIRED"
+      },
+      "created_at": "2026-02-19T15:10:00Z"
+    },
+    {
+      "id": 4,
+      "user_id": 1,
+      "user_email": "admin@aibmez.demo",
+      "action": "SUSPICIOUS_DOCUMENT_FLAGGED",
+      "entity_type": "Document",
+      "entity_id": 8,
+      "details": {
+        "filename": "SREC_Land_Deed_Unverified_Scan.pdf",
+        "status": "SUSPICIOUS"
+      },
+      "created_at": "2026-02-22T14:55:00Z"
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "user_email": "admin@aibmez.demo",
+      "action": "REPORT_GENERATED",
+      "entity_type": "Report",
+      "entity_id": 1,
+      "details": {
+        "title": "Compliance & Document Verification Report - NIET"
+      },
+      "created_at": "2026-02-20T12:00:00Z"
+    }
+  ]
+}

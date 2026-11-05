@@ -1,6 +1,17 @@
 import React from 'react';
 import { clsx } from 'clsx';
 
+export type StatAccentColor =
+  | 'navy'
+  | 'cyan'
+  | 'green'
+  | 'emerald'
+  | 'amber'
+  | 'red'
+  | 'purple'
+  | 'orange'
+  | 'slate';
+
 interface StatCardProps {
   title: string;
   value: string | number;
@@ -10,39 +21,21 @@ interface StatCardProps {
     value: string;
     positive?: boolean;
   };
-  color?: 'navy' | 'cyan' | 'green' | 'amber' | 'red' | 'purple' | 'orange';
+  color?: StatAccentColor;
+  accentColor?: StatAccentColor;
   onClick?: () => void;
 }
 
-const colorMap = {
-  navy: {
-    iconBg: 'bg-brand-navy/10 text-brand-navy',
-    border: 'border-l-4 border-l-brand-navy',
-  },
-  cyan: {
-    iconBg: 'bg-cyan-500/10 text-cyan-600',
-    border: 'border-l-4 border-l-cyan-500',
-  },
-  green: {
-    iconBg: 'bg-emerald-500/10 text-emerald-600',
-    border: 'border-l-4 border-l-emerald-500',
-  },
-  amber: {
-    iconBg: 'bg-amber-500/10 text-amber-600',
-    border: 'border-l-4 border-l-amber-500',
-  },
-  red: {
-    iconBg: 'bg-red-500/10 text-red-600',
-    border: 'border-l-4 border-l-red-500',
-  },
-  purple: {
-    iconBg: 'bg-purple-500/10 text-purple-600',
-    border: 'border-l-4 border-l-purple-500',
-  },
-  orange: {
-    iconBg: 'bg-orange-500/10 text-orange-600',
-    border: 'border-l-4 border-l-orange-500',
-  },
+const colorMap: Record<StatAccentColor, { iconBg: string }> = {
+  navy: { iconBg: 'bg-slate-100 text-slate-700' },
+  cyan: { iconBg: 'bg-blue-50 text-blue-700' },
+  green: { iconBg: 'bg-emerald-50 text-emerald-700' },
+  emerald: { iconBg: 'bg-emerald-50 text-emerald-700' },
+  amber: { iconBg: 'bg-amber-50 text-amber-700' },
+  red: { iconBg: 'bg-red-50 text-red-700' },
+  purple: { iconBg: 'bg-purple-50 text-purple-700' },
+  orange: { iconBg: 'bg-orange-50 text-orange-700' },
+  slate: { iconBg: 'bg-slate-100 text-slate-600' },
 };
 
 export const StatCard: React.FC<StatCardProps> = ({
@@ -51,38 +44,38 @@ export const StatCard: React.FC<StatCardProps> = ({
   subtitle,
   icon,
   trend,
-  color = 'navy',
+  color,
+  accentColor,
   onClick,
 }) => {
-  const c = colorMap[color];
+  const activeColor = accentColor || color || 'navy';
+  const c = colorMap[activeColor] || colorMap.navy;
   return (
     <div
       onClick={onClick}
       className={clsx(
-        'bg-white rounded-xl border border-slate-100 shadow-card p-5 transition-all duration-200',
-        c.border,
-        onClick && 'hover:shadow-card-hover cursor-pointer hover:-translate-y-0.5'
+        'bg-white rounded-lg border border-slate-200 p-4 transition-colors',
+        onClick && 'hover:border-blue-400 hover:bg-slate-50/40 cursor-pointer'
       )}
     >
       <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{title}</p>
-          <p className="text-2xl font-bold text-slate-900 mt-1.5">{value}</p>
-          {subtitle && <p className="text-xs text-slate-500 mt-1">{subtitle}</p>}
+        <div className="min-w-0">
+          <p className="text-xs font-medium text-slate-500">{title}</p>
+          <p className="text-2xl font-bold text-slate-900 mt-1">{value}</p>
+          {subtitle && <p className="text-xs text-slate-500 mt-1 truncate">{subtitle}</p>}
           {trend && (
             <p
               className={clsx(
-                'text-xs font-medium mt-1.5 inline-flex items-center gap-1',
-                trend.positive ? 'text-emerald-600' : 'text-red-600'
+                'text-xs font-medium mt-1 inline-flex items-center gap-1',
+                trend.positive ? 'text-emerald-700' : 'text-red-700'
               )}
             >
               {trend.value}
             </p>
           )}
         </div>
-        <div className={clsx('p-3 rounded-xl flex-shrink-0', c.iconBg)}>{icon}</div>
+        <div className={clsx('p-2.5 rounded-md flex-shrink-0', c.iconBg)}>{icon}</div>
       </div>
     </div>
   );
 };
-

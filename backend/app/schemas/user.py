@@ -1,14 +1,20 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, field_validator
 from typing import Optional
 from datetime import datetime
+from app.schemas.auth import validate_email_address
 
 
 class UserBase(BaseModel):
-    email: EmailStr
+    email: str
     full_name: str
     role: str = "INSTITUTION_ADMIN"
     institution_id: Optional[int] = None
     is_active: bool = True
+
+    @field_validator("email")
+    @classmethod
+    def check_email(cls, v: str) -> str:
+        return validate_email_address(v)
 
 
 class UserCreate(UserBase):

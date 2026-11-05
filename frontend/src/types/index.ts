@@ -1,15 +1,24 @@
 // ============================================================
-// AICTE Smart Platform — Central Type Definitions
+// AI-BMEZ Platform — Central Type Definitions
 // ============================================================
 
-export type UserRole = 'SUPER_ADMIN' | 'OFFICER' | 'INSTITUTION_ADMIN' | 'AICTE_OFFICIAL' | 'INSTITUTE_ADMIN' | 'INSTITUTE_STAFF';
+export type UserRole =
+  | 'SUPER_ADMIN'
+  | 'ADMIN'
+  | 'OFFICER'
+  | 'REVIEWER'
+  | 'INSTITUTION_ADMIN'
+  | 'INSTITUTE_USER'
+  | 'AICTE_OFFICIAL'
+  | 'INSTITUTE_ADMIN'
+  | 'INSTITUTE_STAFF';
 
 export interface User {
   id: number | string;
   email: string;
   full_name: string;
   role: UserRole;
-  institution_id?: number | string | null;
+  institution_id?: number | null;
   institution_name?: string;
   is_active: boolean;
   created_at: string;
@@ -19,6 +28,7 @@ export interface User {
 export interface AuthTokens {
   access_token: string;
   token_type: string;
+  user?: User;
   role?: string;
   full_name?: string;
   user_id?: number;
@@ -28,6 +38,21 @@ export interface AuthTokens {
 export interface LoginCredentials {
   email: string;
   password: string;
+}
+
+export interface RegisterCredentials {
+  email: string;
+  password: string;
+  full_name: string;
+  role?: UserRole | string;
+  institution_id?: number;
+  institution_name?: string;
+  aicte_id?: string;
+  institution_type?: string;
+  state?: string;
+  district?: string;
+  city?: string;
+  phone?: string;
 }
 
 // ---------- Institution ----------
@@ -44,10 +69,16 @@ export interface Institution {
   city?: string;
   address: string;
   pincode: string;
-  phone: string;
-  email: string;
+  phone?: string;
+  email?: string;
+  contact_email?: string;
+  contact_phone?: string;
   contact_person?: string;
-  status: InstitutionStatus;
+  affiliated_university?: string;
+  total_intake?: number;
+  compliance_score?: number;
+  website?: string;
+  status?: InstitutionStatus;
   establishment_year?: number;
   established_year?: number;
   application_count?: number;
@@ -55,13 +86,14 @@ export interface Institution {
   total_applications?: number;
   approved_applications?: number;
   created_at: string;
-  updated_at: string;
+  updated_at?: string;
 }
 
 export interface InstitutionFormData {
   name: string;
   aicte_id: string;
   institution_type?: string;
+  type?: string;
   state?: string;
   district?: string;
   city?: string;
@@ -69,12 +101,23 @@ export interface InstitutionFormData {
   pincode?: string;
   phone?: string;
   email?: string;
+  contact_email?: string;
+  contact_phone?: string;
   contact_person?: string;
   establishment_year?: number;
+  established_year?: number;
 }
 
 // ---------- Application ----------
-export type ApplicationStatus = 'DRAFT' | 'SUBMITTED' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'RETURNED' | 'WITHDRAWN';
+export type ApplicationStatus =
+  | 'DRAFT'
+  | 'SUBMITTED'
+  | 'UNDER_REVIEW'
+  | 'DEFICIENCY_RAISED'
+  | 'APPROVED'
+  | 'REJECTED'
+  | 'RETURNED'
+  | 'WITHDRAWN';
 
 export interface ApplicationCategoryItem {
   id: number;
@@ -85,228 +128,195 @@ export interface ApplicationCategoryItem {
 
 export interface Application {
   id: number;
-  application_id: string;
+  application_id?: string;
   application_number?: string;
-  title: string;
+  title?: string;
   institution_id: number;
-  institution_name: string;
-  category_id: number;
-  category_name: string;
+  institution_name?: string;
+  academic_year?: string;
+  application_type?: string;
+  program_names?: string;
+  proposed_intake?: number;
+  Completeness_score?: number;
+  risk_score?: number;
+  assigned_officer_id?: number | null;
+  reviewer_remarks?: string | null;
+  category_id?: number;
+  category_name?: string;
   category_code?: string;
   category?: string;
   status: ApplicationStatus;
-  submitted_by: number;
+  submitted_by?: number;
   submitter_name?: string;
-  submitted_at?: string;
+  submitted_at?: string | null;
+  reviewed_at?: string | null;
   reviewer_id?: number;
   reviewer_name?: string;
   review_notes?: string;
   document_count?: number;
   created_at: string;
-  updated_at: string;
+  updated_at?: string;
 }
 
 export interface ApplicationFormData {
   institution_id: number;
-  category_id: number;
-  title: string;
-}
-
-export interface ChecklistItem {
-  document_type_id: number;
-  document_type_name: string;
-  code: string;
-  is_required: boolean;
-  is_uploaded: boolean;
-  status: 'UPLOADED' | 'MISSING' | 'OPTIONAL';
-}
-
-export interface ApplicationChecklist {
-  application_id: string;
-  checklist: ChecklistItem[];
-  missing_required: number;
-  total_required: number;
-  total_uploaded: number;
-}
-
-export interface ValidationSummary {
-  application_id: string;
-  status: string;
-  institution: string;
-  category: string;
-  total_documents: number;
-  compliance_checked: number;
-  compliant_rules: number;
-  non_compliant_rules: number;
-  auth_issues: number;
-  open_alerts: number;
-  overall_readiness: 'READY' | 'NEEDS_ATTENTION';
+  category_id?: number;
+  title?: string;
+  application_type?: string;
+  academic_year?: string;
+  program_names?: string;
+  proposed_intake?: number;
 }
 
 // ---------- Document ----------
-export type DocumentStatus = 'PENDING' | 'PROCESSING' | 'VERIFIED' | 'REJECTED' | 'EXPIRED' | 'REPLACED';
-export type AuthStatus = 'PENDING' | 'NO_ANOMALY' | 'POTENTIAL_DUPLICATE' | 'SUSPICIOUS' | 'MISMATCH' | 'MANUAL_REVIEW';
+export type DocumentType =
+  | 'AFFIDAVIT'
+  | 'BUILDING_PLAN'
+  | 'FIRE_NOC'
+  | 'LAND_OWNERSHIP'
+  | 'FACULTY_LIST'
+  | 'EQUIPMENT_SPEC'
+  | 'AUDIT_STATEMENT'
+  | 'TRUST_DEED'
+  | 'ACCREDITATION'
+  | 'OTHER';
 
-export interface DocumentTypeItem {
-  id: number;
-  name: string;
-  code: string;
-  description?: string;
-  is_required: boolean;
-}
+export type DocumentStatus =
+  | 'PENDING'
+  | 'PROCESSING'
+  | 'VERIFIED'
+  | 'MISSING'
+  | 'DUPLICATE'
+  | 'SUSPICIOUS'
+  | 'FLAGGED'
+  | 'REJECTED'
+  | 'EXPIRED'
+  | 'REPLACED';
+
+export type AuthStatus =
+  | 'PENDING'
+  | 'NO_ANOMALY'
+  | 'POTENTIAL_DUPLICATE'
+  | 'SUSPICIOUS'
+  | 'MISMATCH'
+  | 'MANUAL_REVIEW';
 
 export interface Document {
   id: number;
-  original_filename: string;
-  stored_filename: string;
+  institution_id: number;
+  application_id?: number | null;
+  document_type: DocumentType | string;
+  filename: string;
+  original_filename?: string;
+  stored_filename?: string;
+  file_path: string;
   file_size: number;
   mime_type: string;
+  file_hash: string;
   sha256_hash?: string;
-  upload_date: string;
   status: DocumentStatus;
-  is_active: boolean;
-  expiry_date?: string;
-  application_id?: number;
-  institution_id: number;
-  document_type_id: number;
+  extracted_text?: string | null;
+  extracted_metadata?: {
+    word_count?: number;
+    has_dates?: boolean;
+    has_signatures?: boolean;
+    has_stamp_keywords?: boolean;
+    detected_dates?: string[];
+  } | null;
+  authenticity_score?: number | null;
+  fraud_Auto_flags?: string[];
+  is_duplicate?: boolean;
+  duplicate_of_id?: number | null;
+  issue_date?: string | null;
+  expiry_date?: string | null;
+  is_expired?: boolean;
+  uploaded_by?: number | null;
+  verified_by?: number | null;
+  verified_at?: string | null;
+  created_at: string;
+  upload_date?: string;
+  is_active?: boolean;
+  institution_name?: string;
+  document_type_id?: number;
   document_type_name?: string;
-  uploaded_by: number;
   uploader_name?: string;
-}
-
-// ---------- OCR ----------
-export interface OCRCorrectionRecord {
-  field: string;
-  original: string;
-  corrected: string;
-  corrected_at: string;
-  corrected_by: number;
-}
-
-export interface OCRResult {
-  id: number;
-  document_id: number;
-  extracted_text: string;
-  structured_data?: Record<string, any>;
-  institution_name?: string;
   cert_number?: string;
-  issue_date?: string;
-  expiry_date?: string;
-  issuing_authority?: string;
-  confidence_score: number;
-  ocr_engine: string;
-  processed_at: string;
-  corrections?: OCRCorrectionRecord[];
-  corrected_by?: number;
+  ocr_confidence?: number;
+  auth_status?: string;
+  review_notes?: string;
 }
 
-export interface OCRCorrectionData {
-  institution_name?: string;
-  cert_number?: string;
-  issue_date?: string;
-  expiry_date?: string;
-  issuing_authority?: string;
+export interface MissingDocsResponse {
+  institution_id: number;
+  required_documents: string[];
+  uploaded_documents: string[];
+  missing_documents: string[];
+  completeness_percentage: number;
 }
 
-// ---------- Auth Analysis ----------
-export interface AnomalyFinding {
-  type: string;
-  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'INFO';
-  description: string;
-  detail?: string;
-  note?: string;
-}
-
-export interface AuthResult {
-  id?: number;
-  document_id: number;
-  document_name?: string;
-  status: AuthStatus;
-  duplicate_document_id?: number | null;
-  similarity_score?: number | null;
-  anomaly_findings: AnomalyFinding[];
-  metadata_analysis?: Record<string, any>;
-  explanation: string;
-  recommendation: string;
-  analyzed_at: string;
-  reviewed_by?: number | null;
-  review_notes?: string | null;
-  note?: string;
+export interface ExpiryAlertsResponse {
+  expired_count: number;
+  expiring_soon_count: number;
+  expired_documents: {
+    id: number;
+    filename: string;
+    document_type: string;
+    institution_id: number;
+    expiry_date: string;
+  }[];
+  expiring_soon: {
+    id: number;
+    filename: string;
+    document_type: string;
+    institution_id: number;
+    expiry_date: string;
+    days_remaining: number;
+  }[];
 }
 
 // ---------- Compliance ----------
 export type ComplianceStatus = 'COMPLIANT' | 'PARTIAL' | 'NON_COMPLIANT' | 'PENDING';
 
-export interface ComplianceRule {
+export interface ComplianceRecord {
   id: number;
-  rule_id: string;
-  name: string;
-  category_id?: number | null;
-  category_name?: string;
-  description: string;
-  requirement: string;
-  validation_type: string;
-  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
-  version: string;
-  is_sample: boolean;
+  institution_id: number;
+  academic_year: string;
+  faculty_student_ratio: number;
+  total_faculty: number;
+  phd_faculty_count?: number;
+  total_students: number;
+  land_area_acres?: number;
+  built_up_area_sqm: number;
+  classrooms_count?: number;
+  labs_count?: number;
+  library_books_count: number;
+  library_journals_count?: number;
+  computers_count: number;
+  internet_bandwidth_mbps?: number;
+  annual_budget_lakhs: number;
+  actual_utilization_lakhs: number;
+  overall_compliance_score: number;
+  faculty_score: number;
+  infrastructure_score: number;
+  equipment_score: number;
+  financial_score: number;
+  document_compliance_score: number;
+  risk_level: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | string;
+  deficiencies: string[];
+  recommendations: string[];
+  evaluated_at: string;
 }
 
-export interface ComplianceRuleResult {
+// ---------- Audit ----------
+export interface AuditLogEntry {
   id: number;
-  rule_id: string;
-  rule_name: string;
-  severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
-  description?: string;
-  status: ComplianceStatus;
-  evidence?: string;
-  notes?: string;
-  checked_at: string;
-  is_sample?: boolean;
-}
-
-export interface ComplianceResultsResponse {
-  application_id: number;
-  items: ComplianceRuleResult[];
-  summary: {
-    total: number;
-    compliant: number;
-    non_compliant: number;
-    compliance_score: number;
-  };
-}
-
-// ---------- Infrastructure ----------
-export interface InfrastructureEvidenceItem {
-  id: number;
-  application_id?: number;
-  institution_id?: number;
-  category: string;
-  document_id?: number | null;
-  ai_observations?: Record<string, any>;
-  quality_score?: number | null;
-  status: 'PENDING' | 'REVIEWED' | 'APPROVED' | 'REJECTED';
-  uploaded_at: string;
-  reviewed_at?: string | null;
-  note?: string;
-}
-
-// ---------- Verification ----------
-export interface VerificationRecord {
-  id: number;
-  document_id?: number;
-  verification_type: string;
-  status: 'PENDING' | 'VERIFIED' | 'MISMATCH' | 'EXPIRED' | 'UNAVAILABLE' | 'MANUAL_REVIEW';
-  source: string;
-  external_ref?: string;
-  requested_at: string;
-  responded_at?: string;
-  notes?: string;
-  disclaimer?: string;
-}
-
-export interface VerificationAction {
-  action: 'APPROVE' | 'REJECT' | 'RETURN';
-  remarks: string;
+  user_id?: number;
+  user_email?: string;
+  action: string;
+  entity_type?: string;
+  entity_id?: number | string;
+  details?: Record<string, any>;
+  created_at: string;
 }
 
 // ---------- Alerts ----------
@@ -334,36 +344,6 @@ export interface AlertsSummary {
   critical: number;
   high: number;
   medium: number;
-}
-
-// ---------- Audit ----------
-export interface AuditLog {
-  id: number;
-  user_id: number;
-  user_name?: string;
-  action: string;
-  entity_type?: string;
-  entity_id?: string;
-  application_id?: number | null;
-  document_id?: number | null;
-  result?: string;
-  evidence?: Record<string, any> | null;
-  timestamp: string;
-}
-
-// ---------- Dashboard ----------
-export interface DashboardStats {
-  total_institutions: number;
-  total_applications: number;
-  total_documents: number;
-  verified_documents: number;
-  pending_applications: number;
-  missing_documents: number;
-  duplicate_documents: number;
-  expired_documents: number;
-  anomaly_alerts: number;
-  compliance_rate: number;
-  generated_at?: string;
 }
 
 export interface MonthlyTrendPoint {
@@ -403,33 +383,45 @@ export interface ExpiringDocument {
   document_type: string;
 }
 
+// ---------- Dashboard ----------
+export interface DashboardStats {
+  total_institutions: number;
+  total_applications: number;
+  pending_reviews: number;
+  approved_applications: number;
+  rejected_applications: number;
+  deficiency_raised: number;
+  total_documents: number;
+  verified_documents: number;
+  pending_documents: number;
+  flagged_documents: number;
+  suspicious_documents: number;
+  duplicate_documents: number;
+  expired_documents: number;
+  missing_documents_count: number;
+  average_compliance_score: number;
+  high_risk_institutions: number;
+  recent_activities: AuditLogEntry[];
+  application_status_distribution: { status: string; count: number }[];
+  document_status_distribution: { status: string; count: number }[];
+  monthly_submissions: { month: string; count: number }[];
+  compliance_by_state: { state: string; avg_score: number; count: number }[];
+}
+
 // ---------- Reports ----------
 export interface Report {
   id: number;
-  application_id: number;
+  institution_id: number;
+  application_id?: number | null;
   report_type: string;
-  generated_by: number;
+  title: string;
+  file_path: string;
+  download_url?: string;
+  summary_data?: Record<string, any>;
+  generated_by?: number | null;
   generator_name?: string;
   created_at: string;
-  download_url: string;
   filename?: string;
-}
-
-// ---------- Renewal ----------
-export interface RenewalRecordItem {
-  id: number;
-  document_id: number;
-  document_name?: string;
-  institution_id: number;
-  institution_name?: string;
-  renewal_due_date: string;
-  days_remaining?: number | null;
-  status: 'ACTIVE' | 'RENEWED' | 'EXPIRED' | 'CANCELLED';
-  reminder_90_sent: boolean;
-  reminder_60_sent: boolean;
-  reminder_30_sent: boolean;
-  reminder_7_sent: boolean;
-  renewed_document_id?: number | null;
 }
 
 // ---------- Pagination ----------

@@ -87,20 +87,20 @@ def require_roles(*roles: str):
 
 
 def require_super_admin(current_user=Depends(get_current_active_user)):
-    """Dependency that restricts access to SUPER_ADMIN only."""
-    if current_user.role != "SUPER_ADMIN":
+    """Dependency that restricts access to SUPER_ADMIN or ADMIN only."""
+    if current_user.role not in ("SUPER_ADMIN", "ADMIN"):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Super admin access required",
+            detail="Admin access required",
         )
     return current_user
 
 
 def require_officer_or_above(current_user=Depends(get_current_active_user)):
-    """Dependency that restricts access to OFFICER or SUPER_ADMIN."""
-    if current_user.role not in ("SUPER_ADMIN", "OFFICER"):
+    """Dependency that restricts access to OFFICER, REVIEWER, ADMIN, or SUPER_ADMIN."""
+    if current_user.role not in ("SUPER_ADMIN", "ADMIN", "OFFICER", "REVIEWER"):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Officer or admin access required",
+            detail="Reviewer or admin access required",
         )
     return current_user

@@ -42,6 +42,7 @@ export function getApplicationStatusLabel(status: ApplicationStatus): string {
     DRAFT: 'Draft',
     SUBMITTED: 'Submitted',
     UNDER_REVIEW: 'Under Review',
+    DEFICIENCY_RAISED: 'Deficiency Raised',
     APPROVED: 'Approved',
     REJECTED: 'Rejected',
     RETURNED: 'Returned',
@@ -55,6 +56,7 @@ export function getApplicationStatusColor(status: ApplicationStatus): string {
     DRAFT: 'bg-slate-100 text-slate-700',
     SUBMITTED: 'bg-blue-100 text-blue-700',
     UNDER_REVIEW: 'bg-amber-100 text-amber-700',
+    DEFICIENCY_RAISED: 'bg-orange-100 text-orange-800',
     APPROVED: 'bg-green-100 text-green-700',
     REJECTED: 'bg-red-100 text-red-700',
     RETURNED: 'bg-orange-100 text-orange-700',
@@ -65,10 +67,14 @@ export function getApplicationStatusColor(status: ApplicationStatus): string {
 
 export function getDocumentStatusColor(status: DocumentStatus): string {
   const map: Record<DocumentStatus, string> = {
-    PENDING: 'bg-amber-100 text-amber-700',
-    PROCESSING: 'bg-blue-100 text-blue-700',
-    VERIFIED: 'bg-green-100 text-green-700',
-    REJECTED: 'bg-red-100 text-red-700',
+    PENDING: 'bg-amber-100 text-amber-800',
+    PROCESSING: 'bg-blue-100 text-blue-800',
+    VERIFIED: 'bg-emerald-100 text-emerald-800',
+    MISSING: 'bg-slate-100 text-slate-700',
+    DUPLICATE: 'bg-purple-100 text-purple-800',
+    SUSPICIOUS: 'bg-rose-100 text-rose-800',
+    FLAGGED: 'bg-rose-100 text-rose-800',
+    REJECTED: 'bg-red-100 text-red-800',
     EXPIRED: 'bg-red-100 text-red-800',
     REPLACED: 'bg-slate-100 text-slate-600',
   };
@@ -129,11 +135,14 @@ export function getDaysRemainingColor(days: number): string {
 
 export function getRoleLabel(role: UserRole | string): string {
   const map: Record<string, string> = {
-    SUPER_ADMIN: 'Super Admin',
-    OFFICER: 'Verification Officer',
-    INSTITUTION_ADMIN: 'Institution Admin',
-    AICTE_OFFICIAL: 'AICTE Official',
-    INSTITUTE_ADMIN: 'Institute Admin',
+    SUPER_ADMIN: 'Admin',
+    ADMIN: 'Admin',
+    OFFICER: 'Reviewer',
+    REVIEWER: 'Reviewer',
+    INSTITUTION_ADMIN: 'Institute User',
+    INSTITUTE_USER: 'Institute User',
+    AICTE_OFFICIAL: 'Reviewer',
+    INSTITUTE_ADMIN: 'Institute User',
     INSTITUTE_STAFF: 'Institute Staff',
   };
   return map[role] ?? role;
@@ -141,11 +150,14 @@ export function getRoleLabel(role: UserRole | string): string {
 
 export function getRoleBadgeColor(role: UserRole | string): string {
   const map: Record<string, string> = {
-    SUPER_ADMIN: 'bg-purple-100 text-purple-700',
+    SUPER_ADMIN: 'bg-slate-200 text-slate-800',
+    ADMIN: 'bg-slate-200 text-slate-800',
     OFFICER: 'bg-blue-100 text-blue-800',
-    INSTITUTION_ADMIN: 'bg-cyan-100 text-cyan-800',
+    REVIEWER: 'bg-blue-100 text-blue-800',
+    INSTITUTION_ADMIN: 'bg-emerald-100 text-emerald-800',
+    INSTITUTE_USER: 'bg-emerald-100 text-emerald-800',
     AICTE_OFFICIAL: 'bg-blue-100 text-blue-700',
-    INSTITUTE_ADMIN: 'bg-cyan-100 text-cyan-700',
+    INSTITUTE_ADMIN: 'bg-emerald-100 text-emerald-700',
     INSTITUTE_STAFF: 'bg-slate-100 text-slate-700',
   };
   return map[role] ?? 'bg-slate-100 text-slate-700';
@@ -187,3 +199,21 @@ export function getInitials(name: string): string {
     .join('')
     .toUpperCase();
 }
+
+export function formatDocumentType(docType?: string | null): string {
+  if (!docType) return 'Document';
+  const map: Record<string, string> = {
+    AFFIDAVIT: 'Notarized Affidavit',
+    BUILDING_PLAN: 'Approved Building Plan',
+    FIRE_NOC: 'Fire Safety NOC',
+    LAND_OWNERSHIP: 'Land Ownership Certificate',
+    FACULTY_LIST: 'Faculty Roster & Qualifications',
+    EQUIPMENT_SPEC: 'Lab Equipment Specification',
+    AUDIT_STATEMENT: 'Audited Financial Statement',
+    TRUST_DEED: 'Trust / Society Registration Deed',
+    ACCREDITATION: 'NBA / NAAC Accreditation',
+    OTHER: 'Supporting Document',
+  };
+  return map[docType] || docType.replace(/_/g, ' ');
+}
+

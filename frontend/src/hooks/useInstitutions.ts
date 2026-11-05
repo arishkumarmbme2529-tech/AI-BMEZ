@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import api from '../utils/api';
-import type { Institution, InstitutionFormData, PaginatedResponse, PaginationParams } from '../types';
+import type { Institution } from '../types';
 
-export function useInstitutions(params: PaginationParams = {}) {
-  const [data, setData] = useState<PaginatedResponse<Institution>>({ items: [], total: 0, skip: 0, limit: 20 });
+export function useInstitutions(params: Record<string, any> = {}) {
+  const [items, setItems] = useState<Institution[]>([]);
+  const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -12,8 +13,10 @@ export function useInstitutions(params: PaginationParams = {}) {
     setLoading(true);
     setError(null);
     try {
-      const res = await api.get<PaginatedResponse<Institution>>('/institutions', { params });
-      setData(res.data);
+      const res = await api.get<any>('/institutions', { params });
+      const list: Institution[] = Array.isArray(res.data) ? res.data : res.data?.items || [];
+      setItems(list);
+      setTotal(list.length);
     } catch {
       setError('Failed to load institutions');
     } finally {
@@ -21,9 +24,11 @@ export function useInstitutions(params: PaginationParams = {}) {
     }
   }, [JSON.stringify(params)]);
 
-  useEffect(() => { fetch(); }, [fetch]);
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
-  return { ...data, loading, error, refetch: fetch };
+  return { items, total, skip: 0, limit: 50, loading, error, refetch: fetch };
 }
 
 export function useInstitution(id: string | number | undefined) {
@@ -45,7 +50,9 @@ export function useInstitution(id: string | number | undefined) {
     }
   }, [id]);
 
-  useEffect(() => { fetch(); }, [fetch]);
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
   return { institution, loading, error, refetch: fetch };
 }
@@ -53,11 +60,11 @@ export function useInstitution(id: string | number | undefined) {
 export function useCreateInstitution() {
   const [loading, setLoading] = useState(false);
 
-  const create = async (data: InstitutionFormData): Promise<Institution | null> => {
+  const create = async (data: Record<string, any>): Promise<Institution | null> => {
     setLoading(true);
     try {
-      const res = await api.post<Institution>('/institutions', null, { params: data });
-      toast.success('Institution registered successfully');
+      const res = await api.post<Institution>('/institutions', data);
+      toast.success('Institution registered');
       return res.data;
     } catch (err: any) {
       toast.error(err.response?.data?.detail ?? 'Failed to register institution');
@@ -73,11 +80,14 @@ export function useCreateInstitution() {
 export function useUpdateInstitution() {
   const [loading, setLoading] = useState(false);
 
-  const update = async (id: string | number, data: Partial<InstitutionFormData> & { status?: string }): Promise<Institution | null> => {
+  const update = async (
+    id: string | number,
+    data: Record<string, any>
+  ): Promise<Institution | null> => {
     setLoading(true);
     try {
-      const res = await api.put<Institution>(`/institutions/${id}`, null, { params: data });
-      toast.success('Institution updated successfully');
+      const res = await api.put<Institution>(`/institutions/${id}`, data);
+      toast.success('Institution updated');
       return res.data;
     } catch (err: any) {
       toast.error(err.response?.data?.detail ?? 'Failed to update institution');
@@ -89,3 +99,4 @@ export function useUpdateInstitution() {
 
   return { update, loading };
 }
+

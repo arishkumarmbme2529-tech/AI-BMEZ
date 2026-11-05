@@ -54,8 +54,12 @@ export default function App() {
             }}
           />
           <Routes>
-            {/* Public Auth Routes */}
+            {/* Public Auth & Direct Role Demo Routes */}
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<LoginPage />} />
+            <Route path="/admin" element={<LoginPage />} />
+            <Route path="/institute" element={<LoginPage />} />
+            <Route path="/reviewer" element={<LoginPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
             {/* Protected Enterprise Platform Routes */}

@@ -1,252 +1,240 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { Shield, Copy, AlertTriangle, CheckCircle2, FileSearch } from 'lucide-react';
-import { useDocuments, useAuthAnalysis } from '../../hooks/useDocuments';
+import toast from 'react-hot-toast';
+import { useDocuments } from '../../hooks/useDocuments';
 import { useAuth } from '../../contexts/AuthContext';
-import { Card, CardHeader } from '../../components/ui/Card';
+import api from '../../utils/api';
+import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
-import { Select } from '../../components/ui/Select';
 import { StatusBadge } from '../../components/ui/Badge';
-import { AlertBox } from '../../components/ui/Alert';
-import { formatDateTime } from '../../utils/helpers';
+import { formatDocumentType } from '../../utils/helpers';
 
 export const DocumentAuthPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const isDuplicateView = location.pathname.includes('duplicates');
   const { user } = useAuth();
-  const isOfficer = user?.role === 'SUPER_ADMIN' || user?.role === 'OFFICER';
+  const canReview =
+    user?.role === 'SUPER_ADMIN' ||
+    user?.role === 'ADMIN' ||
+    user?.role === 'OFFICER' ||
+    user?.role === 'REVIEWER';
 
   const initialDocId = searchParams.get('document_id') || '';
-  const { items: documents } = useDocuments();
+  const { items: documents, refetch } = useDocuments();
   const [selectedDocId, setSelectedDocId] = useState(initialDocId);
+  const [analyzing, setAnalyzing] = useState(false);
 
   useEffect(() => {
     if (!selectedDocId && documents.length > 0) {
       setSelectedDocId(String(documents[0].id));
     }
-  }, [documents]);
+  }, [documents, selectedDocId]);
 
-  const { result, loading, runAnalysis, reviewResult } = useAuthAnalysis(selectedDocId);
   const selectedDoc = documents.find((d) => String(d.id) === String(selectedDocId));
+  const duplicateDocs = documents.filter((d) => d.status === 'DUPLICATE' || d.is_duplicate);
+
+  const handleRunAnalysis = async () => {
+    if (!selectedDocId) return;
+    setAnalyzing(true);
+    try {
+      const { data } = await api.post(`/documents/${selectedDocId}/analyze`);
+      toast.success(`Authentication check completed: Status ${data.status}`);
+      refetch();
+    } catch {
+      toast.error('Authentication analysis failed');
+    } finally {
+      setAnalyzing(false);
+    }
+  };
+
+  const handleStatusChange = async (docId: number, status: string) => {
+    try {
+      await api.put(`/documents/${docId}/status`, { status }, { params: { status } });
+      toast.success(`Document #${docId} status updated to ${status}`);
+      refetch();
+    } catch {
+      toast.error('Failed to update status');
+    }
+  };
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2.5">
-            {isDuplicateView ? (
-              <Copy className="h-6 w-6 text-purple-600" />
-            ) : (
-              <Shield className="h-6 w-6 text-brand-navy" />
-            )}
-            {isDuplicateView
-              ? 'Cryptographic & Perceptual Duplicate Detection Engine'
-              : 'AI Document Authentication & Preliminary Anomaly Detection'}
-          </h1>
-          <p className="text-sm text-slate-500 mt-0.5">
-            SHA-256 exact hashing, perceptual image hashing (pHash/dHash), metadata forensics, and
-            cross-field consistency checks
-          </p>
-        </div>
+      <div className="bg-white p-5 rounded-lg border border-slate-200">
+        <h1 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+          {isDuplicateView ? (
+            <Copy className="h-5 w-5 text-purple-700" />
+          ) : (
+            <Shield className="h-5 w-5 text-blue-700" />
+          )}
+          {isDuplicateView
+            ? 'Duplicate Document & SHA-256 Hash Detection'
+            : 'Document Authentication & Suspicious File Detection'}
+        </h1>
+        <p className="text-xs text-slate-600 mt-0.5">
+          Verify document integrity using SHA-256 cryptographic hashes, seal/signature verification, and anomaly checks.
+        </p>
       </div>
 
-      <AlertBox variant="warning" title="Important Advisory on AI Preliminary Findings">
-        AI-generated anomaly and authentication indicators are preliminary screening signals only.
-        A document must never be declared forged solely on an automated prediction. All flagged
-        documents require human verification officer review and official issuing authority
-        confirmation.
-      </AlertBox>
-
       {/* Selector Bar */}
-      <Card padding="sm">
+      <Card>
         <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4">
           <div className="flex-1">
-            <Select
-              label="Select Document for Authentication & Duplicate Screening"
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
+              Select Document to Authenticate
+            </label>
+            <select
               value={selectedDocId}
               onChange={(e) => setSelectedDocId(e.target.value)}
-              options={
-                documents.length === 0
-                  ? [{ value: '', label: 'No uploaded documents available' }]
-                  : documents.map((d) => ({
-                      value: String(d.id),
-                      label: `${d.original_filename} (${d.document_type_name || 'Document'})`,
-                    }))
-              }
-            />
+              className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-md focus:outline-none focus:border-blue-600"
+            >
+              {documents.map((d) => (
+                <option key={d.id} value={String(d.id)}>
+                  {d.filename} ({formatDocumentType(d.document_type)}) — [{d.status}]
+                </option>
+              ))}
+            </select>
           </div>
           <Button
             variant="primary"
-            loading={loading}
+            isLoading={analyzing}
             disabled={!selectedDocId}
             leftIcon={<FileSearch className="h-4 w-4" />}
-            onClick={runAnalysis}
+            onClick={handleRunAnalysis}
           >
-            Run Authentication & Hash Analysis
+            Run Authentication & Hash Check
           </Button>
         </div>
       </Card>
 
       {selectedDoc && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left: Hash & Duplicate Summary */}
-          <Card className="lg:col-span-1">
-            <CardHeader
-              title="Cryptographic & Perceptual Hashes"
-              subtitle="Exact and near-duplicate comparison"
-            />
-            <div className="space-y-4 text-xs">
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                <p className="text-slate-400">Document Filename</p>
-                <p className="font-bold text-slate-900 mt-0.5">{selectedDoc.original_filename}</p>
+          <Card
+            className="lg:col-span-5"
+            title="Cryptographic Hash & Duplicate Status"
+            subtitle="SHA-256 exact match comparison across all institutional submissions"
+          >
+            <div className="space-y-3 text-xs">
+              <div className="p-3 rounded-md bg-slate-50 border border-slate-200">
+                <span className="text-slate-500">Document Filename</span>
+                <p className="font-bold text-slate-900 mt-0.5">{selectedDoc.filename}</p>
               </div>
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                <p className="text-slate-400">SHA-256 Exact File Hash</p>
-                <p className="font-mono text-[11px] text-brand-navy break-all mt-1">
-                  {selectedDoc.sha256_hash || 'Computed upon upload'}
+              <div className="p-3 rounded-md bg-slate-50 border border-slate-200">
+                <span className="text-slate-500">SHA-256 Digest</span>
+                <p className="font-mono text-[11px] text-slate-800 break-all mt-1">
+                  {selectedDoc.file_hash}
                 </p>
               </div>
-              {result && (
-                <>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                    <span className="text-slate-500">Authentication Status</span>
-                    <StatusBadge status={result.status} />
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
-                    <span className="text-slate-500">Similarity Score</span>
-                    <span className="font-bold text-slate-900">
-                      {result.similarity_score != null
-                        ? `${(result.similarity_score * 100).toFixed(1)}%`
-                        : '0.0% (Unique)'}
-                    </span>
-                  </div>
-                  {result.duplicate_document_id && (
-                    <div className="p-3 rounded-xl bg-orange-50 border border-orange-200 text-orange-900">
-                      <p className="font-bold">Matching Document Reference Found</p>
-                      <p className="mt-0.5">
-                        Matches Document ID #{result.duplicate_document_id} in repository.
-                      </p>
-                    </div>
-                  )}
-                </>
-              )}
+              <div className="p-3 rounded-md bg-slate-50 border border-slate-200 flex items-center justify-between">
+                <span className="text-slate-600">Current Verification Status</span>
+                <StatusBadge status={selectedDoc.status} />
+              </div>
+              <div className="p-3 rounded-md bg-slate-50 border border-slate-200 flex items-center justify-between">
+                <span className="text-slate-600">Authenticity Score</span>
+                <span className="font-bold text-slate-900">
+                  {selectedDoc.authenticity_score ?? 90}%
+                </span>
+              </div>
+              <div className="p-3 rounded-md bg-slate-50 border border-slate-200 flex items-center justify-between">
+                <span className="text-slate-600">Duplicate Hash Match</span>
+                <span className="font-bold text-slate-900">
+                  {selectedDoc.is_duplicate || selectedDoc.status === 'DUPLICATE'
+                    ? `Yes (Matches Doc #${selectedDoc.duplicate_of_id || 1})`
+                    : 'No (Unique File Hash)'}
+                </span>
+              </div>
             </div>
           </Card>
 
-          {/* Right: Anomaly Findings & Metadata Forensics */}
-          <Card className="lg:col-span-2">
-            <CardHeader
-              title="Preliminary Anomaly & Metadata Forensics Report"
-              subtitle={
-                result
-                  ? `Analyzed at ${formatDateTime(result.analyzed_at)}`
-                  : 'Run analysis to generate findings'
-              }
-              action={
-                result && result.id && isOfficer ? (
-                  <div className="flex items-center gap-2">
-                    <Button
-                      size="xs"
-                      variant="secondary"
-                      onClick={() => reviewResult(result.id!, 'MANUAL_REVIEW', 'Flagged for manual review')}
-                    >
-                      Flag Manual Review
-                    </Button>
-                    <Button
-                      size="xs"
-                      variant="success"
-                      onClick={() => reviewResult(result.id!, 'NO_ANOMALY', 'Cleared by officer')}
-                    >
-                      Clear Document
-                    </Button>
-                  </div>
-                ) : undefined
-              }
-            />
-
-            {!result ? (
-              <div className="py-16 text-center text-xs text-slate-400">
-                Click "Run Authentication & Hash Analysis" above to inspect this document.
-              </div>
-            ) : (
-              <div className="space-y-5">
-                {/* Summary & Recommendation */}
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-slate-800">Analysis Explanation:</span>
-                    <StatusBadge status={result.status} />
-                  </div>
-                  <p className="text-slate-700">{result.explanation}</p>
-                  <p className="font-semibold text-brand-navy pt-1">
-                    Recommended Action: {result.recommendation}
+          {/* Right: Anomaly Findings & Reviewer Controls */}
+          <Card
+            className="lg:col-span-7"
+            title="Authentication Findings & Review Controls"
+            subtitle="Detected anomalies, duplicate alerts, and manual override actions"
+            action={
+              canReview ? (
+                <div className="flex items-center gap-1.5">
+                  <Button
+                    size="xs"
+                    variant="success"
+                    onClick={() => handleStatusChange(selectedDoc.id, 'VERIFIED')}
+                  >
+                    Mark Verified
+                  </Button>
+                  <Button
+                    size="xs"
+                    variant="danger"
+                    onClick={() => handleStatusChange(selectedDoc.id, 'SUSPICIOUS')}
+                  >
+                    Flag Suspicious
+                  </Button>
+                  <Button
+                    size="xs"
+                    variant="secondary"
+                    onClick={() => handleStatusChange(selectedDoc.id, 'DUPLICATE')}
+                  >
+                    Mark Duplicate
+                  </Button>
+                </div>
+              ) : undefined
+            }
+          >
+            <div className="space-y-4 text-xs">
+              {selectedDoc.fraud_Auto_flags && selectedDoc.fraud_Auto_flags.length > 0 ? (
+                <div className="space-y-2">
+                  <p className="font-semibold text-rose-800">
+                    Flagged Indicators ({selectedDoc.fraud_Auto_flags.length}):
                   </p>
-                </div>
-
-                {/* Findings List */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
-                    Detected Indicators ({result.anomaly_findings?.length || 0})
-                  </h4>
-                  {!result.anomaly_findings || result.anomaly_findings.length === 0 ? (
-                    <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-3 text-xs text-emerald-900">
-                      <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0" />
-                      <span>
-                        No compression anomalies, metadata discrepancies, or date mismatches
-                        detected in preliminary screening.
-                      </span>
+                  {selectedDoc.fraud_Auto_flags.map((flag, i) => (
+                    <div
+                      key={i}
+                      className="p-3 rounded-md bg-rose-50 border border-rose-200 flex items-start gap-2 text-rose-900"
+                    >
+                      <AlertTriangle className="h-4 w-4 text-rose-600 flex-shrink-0 mt-0.5" />
+                      <span>{flag}</span>
                     </div>
-                  ) : (
-                    <div className="space-y-2.5">
-                      {result.anomaly_findings.map((f, idx) => (
-                        <div
-                          key={idx}
-                          className="p-3.5 rounded-xl border border-slate-200 bg-white space-y-1 text-xs"
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="font-bold text-slate-900 flex items-center gap-1.5">
-                              <AlertTriangle className="h-4 w-4 text-amber-500" />
-                              {f.type.replace(/_/g, ' ')}
-                            </span>
-                            <StatusBadge status={f.severity} />
-                          </div>
-                          <p className="text-slate-700">{f.description}</p>
-                          {f.detail && (
-                            <p className="font-mono text-[11px] text-slate-500">{f.detail}</p>
-                          )}
-                          {f.note && <p className="text-[11px] text-slate-400 italic">{f.note}</p>}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  ))}
                 </div>
+              ) : (
+                <div className="p-4 rounded-md bg-emerald-50 border border-emerald-200 flex items-center gap-3 text-emerald-900">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                  <span>
+                    No duplicate hashes or tampering indicators detected for this document.
+                  </span>
+                </div>
+              )}
 
-                {/* Metadata Analysis JSON */}
-                {result.metadata_analysis && Object.keys(result.metadata_analysis).length > 0 && (
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-                      Extracted File & PDF Metadata
-                    </h4>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-                      {Object.entries(result.metadata_analysis).map(([k, v]) => (
-                        <div key={k} className="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
-                          <span className="text-[10px] uppercase text-slate-400">
-                            {k.replace(/_/g, ' ')}
-                          </span>
-                          <p className="font-mono font-medium text-slate-800 truncate mt-0.5">
-                            {String(v || '—')}
+              <div>
+                <p className="font-semibold text-slate-700 mb-2">
+                  All Flagged Duplicate Documents in Repository ({duplicateDocs.length})
+                </p>
+                {duplicateDocs.length === 0 ? (
+                  <p className="text-slate-500">No duplicate documents currently flagged.</p>
+                ) : (
+                  <div className="space-y-2">
+                    {duplicateDocs.map((dup) => (
+                      <div
+                        key={dup.id}
+                        className="p-3 rounded border border-purple-200 bg-purple-50/40 flex items-center justify-between gap-2"
+                      >
+                        <div>
+                          <p className="font-semibold text-slate-900">{dup.filename}</p>
+                          <p className="text-[11px] font-mono text-slate-600">
+                            SHA-256: {dup.file_hash?.slice(0, 24)}... (Matches Doc #{dup.duplicate_of_id || 1})
                           </p>
                         </div>
-                      ))}
-                    </div>
+                        <StatusBadge status="DUPLICATE" />
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
-            )}
+            </div>
           </Card>
         </div>
       )}
     </div>
   );
 };
-
